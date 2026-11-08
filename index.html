@@ -4,12 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ngoo Kah Chun</title>
-<meta name="description" content="Ngoo Kah Chun, Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Projects, experience, awards and contact.">
+<meta name="description" content="Ngoo Kah Chun, Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Software and security projects, experience, awards and contact.">
+<meta name="author" content="Ngoo Kah Chun">
+<link rel="canonical" href="https://kcjj0203.github.io/">
+<link rel="alternate" hreflang="en" href="https://kcjj0203.github.io/">
+<link rel="alternate" hreflang="zh-Hans" href="https://kcjj0203.github.io/?lang=zh">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ngoo Kah Chun">
+<meta property="og:title" content="Ngoo Kah Chun | IT student, Singapore">
+<meta property="og:description" content="Year 2 IT student at Ngee Ann Polytechnic. I build practical software and I'm going deeper into security.">
+<meta property="og:url" content="https://kcjj0203.github.io/">
+<meta property="og:image" content="https://kcjj0203.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ngoo Kah Chun, Year 2 IT student at Ngee Ann Polytechnic. Software and security.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ngoo Kah Chun | IT student, Singapore">
+<meta name="twitter:description" content="Year 2 IT student at Ngee Ann Polytechnic. I build practical software and I'm going deeper into security.">
+<meta name="twitter:image" content="https://kcjj0203.github.io/assets/og.png">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0d0f12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
 <style>
   :root {
@@ -26,6 +43,7 @@
     --red-soft: rgba(239, 59, 54, 0.14);
     --red-glow: rgba(239, 59, 54, 0.28);
     --ease: cubic-bezier(.2, .7, .2, 1);
+    --cjk: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -33,12 +51,15 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font: 400 17px/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font: 400 17px/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", var(--cjk);
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  /* Backdrop: a faint red light behind the hero, plus film grain */
+  html[lang="zh-Hans"] body { font-family: "Bricolage Grotesque", var(--cjk); line-height: 1.75; }
+  html[lang="zh-Hans"] :is(.statement, .sec-head h2, .contact-h, .body h3, .proof h3, .entry h3) { letter-spacing: 0; }
+  html[lang="zh-Hans"] .statement { line-height: 1.12; font-size: clamp(2.2rem, 5.6vw, 4.8rem); }
+  html[lang="zh-Hans"] .sec-head h2, html[lang="zh-Hans"] .contact-h { line-height: 1.15; }
   body::before {
     content: ""; position: absolute; inset: 0 0 auto 0; height: 1100px; pointer-events: none; z-index: -1;
     background:
@@ -56,6 +77,7 @@
   h1, h2, h3, p, ul, figure { margin: 0; padding: 0; }
   ul { list-style: none; }
   ::selection { background: var(--red); color: #fff; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .skip { position: absolute; left: 16px; top: -60px; background: var(--red); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 200; text-decoration: none; font-weight: 600; }
   .skip:focus { top: 12px; }
@@ -63,29 +85,28 @@
   @media (min-width: 760px) { .wrap { padding: 0 40px; } }
 
   /* Top bar */
-  .bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); background: rgba(13, 15, 18, 0.72); border-bottom: 1px solid transparent; }
+  .bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); background: rgba(13, 15, 18, 0.72); }
   .bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 64px; }
-  .bar .me { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
-  .bar nav { display: flex; gap: 26px; font-size: 0.95rem; }
-  .bar nav a { color: var(--muted); text-decoration: none; }
+  .bar .me { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+  .bar .right { display: flex; align-items: center; gap: 22px; }
+  .bar nav { display: flex; gap: 24px; font-size: 0.95rem; }
+  .bar nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
   .bar nav a:hover { color: var(--ink); }
-  @media (max-width: 680px) { .bar nav .opt { display: none; } }
+  @media (max-width: 760px) { .bar nav .opt { display: none; } }
+  .lang { display: inline-flex; border: 1px solid var(--line-2); border-radius: 999px; padding: 3px; gap: 2px; }
+  .lang[hidden] { display: none; }
+  .lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 500 0.82rem/1 "Bricolage Grotesque", var(--cjk); padding: 6px 10px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
+  .lang button:hover { color: var(--ink); }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .lang button:focus-visible { outline-offset: 2px; }
 
   /* Hero */
   .hero { display: grid; gap: 40px; padding: 56px 0 56px; align-items: center; }
   @media (min-width: 940px) { .hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; padding: 104px 0 96px; } }
   .status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 0.9rem; color: var(--muted); background: rgba(255,255,255,0.02); }
-  .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 var(--red-glow); animation: pulse 2.4s var(--ease) infinite; }
+  .status i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: pulse 2.4s var(--ease) infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,59,54,.5); } 70%, 100% { box-shadow: 0 0 0 9px rgba(239,59,54,0); } }
-  .statement {
-    margin-top: 28px;
-    font-size: clamp(2.5rem, 6.4vw, 5.6rem);
-    font-weight: 700;
-    font-stretch: 88%;
-    line-height: 0.98;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
-  }
+  .statement { margin-top: 28px; font-size: clamp(2.5rem, 6.4vw, 5.6rem); font-weight: 700; font-stretch: 88%; line-height: 0.98; letter-spacing: -0.03em; text-wrap: balance; }
   .statement .name { display: block; color: var(--ink); }
   .statement .rest { display: block; color: #c9ced6; font-weight: 600; }
   .sub { margin-top: 28px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); max-width: 34em; color: var(--muted); }
@@ -102,7 +123,8 @@
   .sun .disc::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--red); transform: translate(10%, -8%); box-shadow: 0 0 120px -10px var(--red-glow); }
   .sun img { position: relative; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; background: #8f9297; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
   .sun figcaption { margin-top: 18px; display: flex; gap: 10px; align-items: baseline; color: var(--faint); font-size: 0.95rem; }
-  .sun .zh { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; color: var(--ink); font-size: 1.15rem; letter-spacing: 0.12em; }
+  .sun .zh { font-family: var(--cjk); color: var(--ink); font-size: 1.15rem; letter-spacing: 0.12em; }
+  .sun .alt { color: var(--ink); font-size: 1.05rem; }
   @media (max-width: 939px) { .sun { width: 190px; justify-self: start; order: -1; } }
 
   /* Proof strip */
@@ -115,7 +137,6 @@
   .proof .won { color: #fff; background: var(--red); padding: 3px 10px; border-radius: 999px; font-weight: 600; }
   .proof h3 { font-size: 1.4rem; font-weight: 700; font-stretch: 92%; letter-spacing: -0.015em; line-height: 1.2; }
   .proof p { color: var(--muted); font-size: 0.98rem; margin-top: 8px; }
-  .proof .big { font-size: 1.4rem; }
 
   /* Section heads */
   .sec { padding-top: 136px; scroll-margin-top: 48px; }
@@ -140,13 +161,15 @@
   @media (min-width: 1000px) { .visual { border-bottom: 0; border-right: 1px solid var(--line); min-height: 440px; } }
   .visual img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .6s var(--ease); }
   .body { padding: 28px 22px 30px; display: flex; flex-direction: column; }
-  @media (min-width: 760px) { .body { padding: 40px 40px 40px; } }
+  @media (min-width: 760px) { .body { padding: 40px; } }
   .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 500; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
   .pill.live { color: #ffd9d7; border-color: rgba(239,59,54,.45); background: var(--red-soft); }
   .pill.live i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
-  .body h3 { margin-top: 18px; font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.025em; line-height: 1.02; }
+  .pill.won { color: #fff; background: var(--red); border-color: var(--red); }
+  .body h3 { margin-top: 18px; font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.025em; line-height: 1.04; }
   .body .lede { margin-top: 14px; font-size: 1.1rem; line-height: 1.5; color: var(--ink); }
+  html[lang="zh-Hans"] .body .lede { line-height: 1.7; }
   .role { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); }
   .role b { display: block; color: var(--faint); font-weight: 500; font-size: 0.85rem; margin-bottom: 6px; }
   .role ul { display: grid; gap: 6px; }
@@ -158,9 +181,8 @@
   .body .cta .btn { padding: 10px 18px; font-size: 0.93rem; }
   .note { margin-top: 22px; font-size: 0.88rem; color: var(--faint); }
 
-  /* Diagrams (shared) */
-  .diagram { position: relative; padding: 28px 18px; display: grid; align-content: center; gap: 0; background:
-      radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px) 0 0 / 18px 18px, var(--s2); }
+  /* Diagrams */
+  .diagram { position: relative; padding: 28px 18px; display: grid; align-content: center; background: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px) 0 0 / 18px 18px, var(--s2); }
   @media (min-width: 760px) { .diagram { padding: 40px 36px; } }
   .node { position: relative; background: var(--bg); border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; }
   .node small { display: block; font-size: 0.75rem; color: var(--faint); margin-bottom: 2px; }
@@ -170,6 +192,17 @@
   .node.ghost { background: transparent; border-style: dashed; }
   .arrow { position: relative; display: grid; place-items: center; color: var(--faint); }
   .arrow svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .cap { margin-bottom: 18px; font-size: 0.8rem; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+  .cap::before { content: ""; width: 18px; height: 1px; background: var(--line-2); }
+
+  /* EDR concept */
+  .edr { display: grid; gap: 10px; }
+  .edr .srcs { display: grid; gap: 10px; }
+  .edr .arrow svg { transform: rotate(90deg); }
+  @media (min-width: 640px) {
+    .edr { grid-template-columns: 1.1fr 28px 1fr 28px 0.9fr; align-items: center; gap: 6px; }
+    .edr .arrow svg { transform: none; }
+  }
 
   /* Jarvis flow */
   .flow { display: grid; gap: 10px; }
@@ -207,30 +240,24 @@
   .stack-rows { display: grid; gap: 6px; }
   .stack-rows div { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 8px; background: var(--s2); font-size: 0.85rem; }
   .stack-rows div span { color: var(--faint); }
-  .verbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .verbs { gap: 5px; }
+  .verbs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
   .verbs b { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--muted); }
   .verbs b.g { color: #9fe0b5; border-color: rgba(120, 220, 160, .35); }
   .verbs b.p { color: #ffd38a; border-color: rgba(255, 200, 110, .35); }
   .verbs b.u { color: #9cc8ff; border-color: rgba(130, 180, 255, .35); }
   .verbs b.d { color: #ffaaa6; border-color: rgba(239, 59, 54, .45); }
-  .arch .ext { display: grid; gap: 10px; }
-  @media (min-width: 640px) {
-    .arch { grid-template-columns: 0.85fr 24px 1.7fr 24px 1fr; align-items: center; gap: 4px; }
-    .arch .ext { grid-template-columns: 1fr; }
-  }
+  @media (min-width: 640px) { .arch { grid-template-columns: 0.85fr 24px 1.7fr 24px 1fr; align-items: center; gap: 4px; } }
   @media (max-width: 639px) { .arch .arrow svg { transform: rotate(90deg); } }
   .arch-ext { margin-top: 18px; display: grid; gap: 10px; }
   @media (min-width: 640px) { .arch-ext { grid-template-columns: 1fr 1fr; } }
-  .arch-ext .lead { grid-column: 1 / -1; font-size: 0.8rem; color: var(--faint); display: flex; align-items: center; gap: 8px; }
-  .arch-ext .lead::before { content: ""; width: 18px; height: 1px; background: var(--line-2); }
+  .arch-ext .cap { grid-column: 1 / -1; margin-bottom: 0; }
 
   /* Entries */
   .entries { border-top: 1px solid var(--line-2); }
   .entry { display: grid; gap: 6px 40px; padding: 30px 0 32px; border-bottom: 1px solid var(--line); }
   @media (min-width: 900px) { .entry { grid-template-columns: 220px minmax(0, 1fr); } }
   .entry .when { color: var(--faint); font-size: 0.95rem; padding-top: 6px; font-variant-numeric: tabular-nums; }
-  .entry h3 { font-size: 1.45rem; font-weight: 700; font-stretch: 92%; letter-spacing: -0.015em; line-height: 1.2; }
+  .entry h3 { font-size: 1.45rem; font-weight: 700; font-stretch: 92%; letter-spacing: -0.015em; line-height: 1.25; }
   .entry .org { color: var(--muted); margin-top: 2px; }
   .entry p.d { margin-top: 12px; color: #c9ced6; max-width: 44em; }
   .entry ul.pts { margin-top: 12px; display: grid; gap: 6px; max-width: 44em; color: #c9ced6; }
@@ -254,8 +281,7 @@
   .certs .when { color: var(--faint); font-size: 0.9rem; white-space: nowrap; }
 
   /* Contact */
-  .contact { margin-top: 136px; position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; padding: 56px 22px; background:
-      radial-gradient(700px 360px at 85% 120%, rgba(239,59,54,.22), transparent 70%), var(--s1); }
+  .contact { margin-top: 136px; position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; padding: 56px 22px; background: radial-gradient(700px 360px at 85% 120%, rgba(239,59,54,.22), transparent 70%), var(--s1); }
   @media (min-width: 760px) { .contact { padding: 80px 64px; } }
   .contact-h { margin-top: 10px; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.03em; line-height: 1; }
   .contact p { color: var(--muted); font-size: 1.1rem; max-width: 34em; margin-top: 18px; }
@@ -264,7 +290,7 @@
   .contact .cta { margin-top: 36px; }
   footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 0 44px; color: var(--faint); font-size: 0.9rem; }
 
-  /* Motion: one load sequence + gentle reveal on scroll (JS only, honours reduced motion) */
+  /* Motion */
   @media (prefers-reduced-motion: no-preference) {
     .js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
     .js .rise.in { opacity: 1; transform: none; }
@@ -280,32 +306,38 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="nav.01">Skip to content</a>
 
 <header class="bar">
   <div class="wrap">
-    <a class="me" href="#top">Ngoo Kah Chun</a>
-    <nav aria-label="Sections">
-      <a class="opt" href="#projects">Projects</a>
-      <a class="opt" href="#experience">Experience</a>
-      <a class="opt" href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <a class="me" href="#top" data-i18n="nav.02">Ngoo Kah Chun</a>
+    <div class="right">
+      <nav aria-label="Sections" data-i18n-label="nav.03">
+        <a class="opt" href="#projects" data-i18n="nav.04">Projects</a>
+        <a class="opt" href="#experience" data-i18n="nav.05">Experience</a>
+        <a class="opt" href="#skills" data-i18n="nav.06">Skills</a>
+        <a href="#contact" data-i18n="nav.07">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language" data-i18n-label="nav.08" hidden>
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" lang="zh-Hans" aria-pressed="false">中文</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="wrap" id="top">
-  <section class="hero" aria-label="Introduction">
+  <section class="hero" aria-label="Introduction" data-i18n-label="hero.01">
     <div>
-      <p class="status rise"><i aria-hidden="true"></i>Open to software internships</p>
-      <h1 class="statement rise"><span class="name">Ngoo Kah Chun</span> <span class="rest">builds practical software and is going deeper into security.</span></h1>
-      <p class="sub rise"><b>Year 2, Diploma in Information Technology at Ngee Ann Polytechnic.</b> I build tools for problems I actually have, from a live carpark fee map to a personal assistant that runs my study admin.</p>
+      <p class="status rise"><i aria-hidden="true"></i><span data-i18n="hero.02">Open to software internships</span></p>
+      <h1 class="statement rise"><span class="name" data-i18n="hero.03">Ngoo Kah Chun</span> <span class="rest" data-i18n="hero.04">builds practical software and is going deeper into security.</span></h1>
+      <p class="sub rise" data-i18n="hero.05"><b>Year 2, Diploma in Information Technology at Ngee Ann Polytechnic.</b> I build tools for problems I actually have, from a live carpark fee map to a personal assistant that runs my study admin.</p>
       <div class="cta rise">
         <a class="btn primary" href="mailto:kahchunn@gmail.com">
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3h13c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-13C.67 13 0 12.33 0 11.5v-7C0 3.67.67 3 1.5 3zm.3 1.6v.26L8 9.02l6.2-4.16V4.6H1.8zm12.4 2.18L8.45 10.64a.8.8 0 0 1-.9 0L1.8 6.78v4.62h12.4V6.78z"/></svg>
-          Email me</a>
+          <span data-i18n="hero.06">Email me</span></a>
         <a class="btn" href="https://github.com/KCJJ0203" rel="noopener">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.290 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" rel="noopener">
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.15C0 .52.52 0 1.17 0h13.66C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.17 1.15H1.17C.52 16 0 15.48 0 14.85V1.15zM4.94 13.4V6.17H2.53v7.23h2.41zM3.74 5.18c.84 0 1.36-.56 1.36-1.25-.02-.71-.52-1.25-1.35-1.25-.82 0-1.36.54-1.36 1.25 0 .69.52 1.25 1.33 1.25h.02zm2.54 8.22h2.4V9.36c0-.21.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.26c0-2.22-1.18-3.25-2.77-3.25-1.28 0-1.84.7-2.16 1.2v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.23 0 7.23z"/></svg>
@@ -313,26 +345,26 @@
       </div>
     </div>
     <figure class="sun rise">
-      <div class="disc"><img src="assets/kc.jpg" width="600" height="840" alt="Portrait of Ngoo Kah Chun"></div>
-      <figcaption><span class="zh" lang="zh-Hans">吴家骏</span>Singapore</figcaption>
+      <div class="disc"><img src="assets/kc.jpg" width="600" height="840" alt="Portrait of Ngoo Kah Chun" data-i18n-alt="hero.07"></div>
+      <figcaption><span class="zh" lang="zh-Hans">吴家骏</span><span data-i18n="hero.08">Singapore</span></figcaption>
     </figure>
   </section>
 
-  <section class="proof rise" aria-label="Highlights">
+  <section class="proof rise" aria-label="Highlights" data-i18n-label="highlights.01">
     <div>
-      <span class="lbl"><span class="won">Champion</span>Jun 2026</span>
+      <span class="lbl" data-i18n="highlights.02"><span class="won">Champion</span>Jun 2026</span>
       <h3>The Sentinel Challenge 2026</h3>
-      <p>Polytechnic/ITE category of DSTA BrainHack, a cybersecurity capture-the-flag competition, in a team of four.</p>
+      <p data-i18n="highlights.03">Polytechnic/ITE category of DSTA BrainHack, a cybersecurity capture-the-flag competition, in a team of four.</p>
     </div>
     <div>
-      <span class="lbl">Dec 2025 and Jun 2026</span>
-      <h3>Director's List, twice</h3>
-      <p>Cumulative GPA 3.92 / 4.00, School of InfoComm Technology, Ngee Ann Polytechnic.</p>
+      <span class="lbl" data-i18n="highlights.04">Dec 2025 and Jun 2026</span>
+      <h3 data-i18n="highlights.05">Director's List, twice</h3>
+      <p data-i18n="highlights.06">Cumulative GPA 3.92 / 4.00, School of InfoComm Technology, Ngee Ann Polytechnic.</p>
     </div>
     <div>
-      <span class="lbl">Jun 2025 to Sep 2026</span>
-      <h3>Sentinel Programme</h3>
-      <p>Cybersecurity talent programme by the Digital and Intelligence Service (DIS), MINDEF/SAF.</p>
+      <span class="lbl" data-i18n="highlights.07">Jun 2025 to Sep 2026</span>
+      <h3 data-i18n="highlights.08">Sentinel Programme</h3>
+      <p data-i18n="highlights.09">Cybersecurity talent programme by the Digital and Intelligence Service (DIS), MINDEF/SAF.</p>
     </div>
   </section>
 
@@ -340,10 +372,10 @@
     <section class="sec" id="projects" aria-labelledby="projects-h">
       <div class="sec-head rise">
         <div>
-          <p class="num"><b>01</b>Projects</p>
-          <h2 id="projects-h">Things I've built</h2>
+          <p class="num"><b>01</b><span data-i18n="projects.01">Projects</span></p>
+          <h2 id="projects-h" data-i18n="projects.02">Built and won</h2>
         </div>
-        <p>One live product, one private system I use every day, and one team project I led at school.</p>
+        <p data-i18n="projects.03">A live product, a security programme I trained in and won with, a private system I use every day, and a team project I led at school.</p>
       </div>
 
       <div class="projects">
@@ -353,99 +385,134 @@
             <img src="assets/carpark-sg.png" width="1280" height="782" loading="lazy" alt="">
           </a>
           <div class="body">
-            <div class="meta"><span class="pill live"><i aria-hidden="true"></i>Live</span><span class="pill">Personal project</span><span class="pill">Aug 2026 to now</span></div>
+            <div class="meta"><span class="pill live"><i aria-hidden="true"></i><span data-i18n="carpark.01">Live</span></span><span class="pill" data-i18n="carpark.02">Personal project</span><span class="pill" data-i18n="carpark.03">Aug 2026 to now</span></div>
             <h3 id="p1">Carpark SG</h3>
-            <p class="lede">A live map of 2,970 HDB, URA and LTA carparks in Singapore that tells drivers what time to park for the lowest fee, not just where.</p>
+            <p class="lede" data-i18n="carpark.04">A live map of 2,970 HDB, URA and LTA carparks in Singapore that tells drivers what time to park for the lowest fee, not just where.</p>
             <div class="role">
-              <b>My role</b>
+              <b data-i18n="carpark.05">My role</b>
               <ul>
-                <li>Came up with the idea, planned each feature and tested every release.</li>
-                <li>Directed an AI coding agent to build it, then checked the results myself.</li>
-                <li>Carpark data is collected every 30 minutes on a Linux server, with GitHub Actions as a backup.</li>
+                <li data-i18n="carpark.06">Came up with the idea, planned each feature and tested every release.</li>
+                <li data-i18n="carpark.07">Directed an AI coding agent to build it, then checked the results myself.</li>
+                <li data-i18n="carpark.08">Carpark data is collected every 30 minutes on a Linux server, with GitHub Actions as a backup.</li>
               </ul>
             </div>
-            <ul class="tags" aria-label="Built with"><li>JavaScript</li><li>Linux server</li><li>GitHub Actions</li><li>Claude Code</li></ul>
+            <ul class="tags" aria-label="Built with" data-i18n-label="carpark.09"><li>JavaScript</li><li data-i18n="carpark.10">Linux server</li><li>GitHub Actions</li><li>Claude Code</li></ul>
             <div class="cta">
-              <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/">Open Carpark SG</a>
-              <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener">View the code</a>
+              <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/" data-i18n="carpark.11">Open Carpark SG</a>
+              <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener" data-i18n="carpark.12">View the code</a>
             </div>
-            <p class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Screenshot: a dark map of Orchard Road with a fee pin on each carpark, and a side panel showing the cost of a two-hour stay at 313@Somerset.</p>
+            <p class="vh" data-i18n="carpark.13">Screenshot: a dark map of Orchard Road with a fee pin on each carpark, and a side panel showing the cost of a two-hour stay at 313@Somerset.</p>
+          </div>
+        </article>
+
+        <!-- Sentinel -->
+        <article class="card rise" aria-labelledby="p4">
+          <div class="visual diagram" role="img" aria-label="General concept of an endpoint detection and response tool: it watches processes, network connections and files, checks them against detection rules, and raises alerts. Not the actual tool." data-i18n-label="sentinel.01">
+            <div aria-hidden="true">
+              <p class="cap" data-i18n="sentinel.02">How an EDR tool works, in general</p>
+              <div class="edr">
+                <div class="srcs">
+                  <div class="node"><small data-i18n="sentinel.03">Watches</small><strong data-i18n="sentinel.04">Processes</strong><span data-i18n="sentinel.05">Programs that start and run</span></div>
+                  <div class="node"><small data-i18n="sentinel.06">Watches</small><strong data-i18n="sentinel.07">Network connections</strong><span data-i18n="sentinel.08">Who the machine talks to</span></div>
+                  <div class="node"><small data-i18n="sentinel.09">Watches</small><strong data-i18n="sentinel.10">Files</strong><span data-i18n="sentinel.11">Changes on disk</span></div>
+                </div>
+                <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+                <div class="node hot"><small data-i18n="sentinel.12">Checks</small><strong data-i18n="sentinel.13">Detection rules</strong><span data-i18n="sentinel.14">Flag behaviour that looks suspicious</span></div>
+                <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+                <div class="node"><small data-i18n="sentinel.15">Raises</small><strong data-i18n="sentinel.16">Alerts</strong><span data-i18n="sentinel.17">Tell a person what to look at</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="meta"><span class="pill won" data-i18n="sentinel.18">Champion</span><span class="pill" data-i18n="sentinel.19">Cybersecurity</span><span class="pill" data-i18n="sentinel.20">Jun 2025 to Sep 2026</span></div>
+            <h3 id="p4" data-i18n="sentinel.21">Sentinel: cybersecurity training and Challenge win</h3>
+            <p class="lede" data-i18n="sentinel.22">A cybersecurity talent development programme by the Digital and Intelligence Service (DIS), MINDEF/SAF. Along the way, my team of four won the Polytechnic/ITE category of The Sentinel Challenge 2026.</p>
+            <div class="role">
+              <b data-i18n="sentinel.23">What I did</b>
+              <ul>
+                <li data-i18n="sentinel.24">Trained in Python, computer networks, network forensics, network intrusion detection and AI for security.</li>
+                <li data-i18n="sentinel.25">Built a Python endpoint detection and response (EDR) tool for Windows in the final workshop.</li>
+                <li data-i18n="sentinel.26">Champion, Polytechnic/ITE category, The Sentinel Challenge 2026 at DSTA BrainHack, a cybersecurity capture-the-flag competition, Jun 2026.</li>
+              </ul>
+            </div>
+            <ul class="tags" aria-label="Topics" data-i18n-label="sentinel.27"><li>Python</li><li data-i18n="sentinel.28">Computer networks</li><li data-i18n="sentinel.29">Network forensics</li><li data-i18n="sentinel.30">Intrusion detection</li><li data-i18n="sentinel.31">AI for security</li></ul>
+            <p class="note" data-i18n="sentinel.32">Programme and challenge details are not public, so this stays general.</p>
           </div>
         </article>
 
         <!-- Jarvis -->
         <article class="card rise" aria-labelledby="p2">
-          <div class="visual diagram" role="img" aria-label="Diagram of how Jarvis works: the school LMS feeds scheduled jobs on a Linux server, which update the StudyTracker dashboard and send Telegram reminders. Claude Code memory and skills drive the jobs, and the dashboard keeps a synced calendar.">
+          <div class="visual diagram" role="img" aria-label="Diagram of how Jarvis works: the school LMS feeds scheduled jobs on a Linux server, which update the StudyTracker dashboard and send Telegram reminders. Claude Code memory and skills drive the jobs, and the dashboard keeps a synced calendar." data-i18n-label="jarvis.01">
             <div class="flow" aria-hidden="true">
-              <div class="node a1"><small>Source</small><strong>School LMS</strong><span>Deadlines and submission status</span></div>
+              <div class="node a1"><small data-i18n="jarvis.02">Source</small><strong data-i18n="jarvis.03">School LMS</strong><span data-i18n="jarvis.04">Deadlines and submission status</span></div>
               <div class="arrow x1"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-              <div class="node hot a2"><small>Every morning</small><strong>Scheduled jobs</strong><span>Running on a Linux server</span></div>
+              <div class="node hot a2"><small data-i18n="jarvis.05">Every morning</small><strong data-i18n="jarvis.06">Scheduled jobs</strong><span data-i18n="jarvis.07">Running on a Linux server</span></div>
               <div class="arrow x2"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-              <div class="node a3"><small>Shows</small><strong>StudyTracker</strong><span>Dashboard and synced calendar</span></div>
+              <div class="node a3"><small data-i18n="jarvis.08">Shows</small><strong>StudyTracker</strong><span data-i18n="jarvis.09">Dashboard and synced calendar</span></div>
               <div class="arrow up"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
               <div class="arrow dn"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-              <div class="node ghost a4"><small>Drives the jobs</small><strong>Claude Code</strong><span>Long-term memory and custom skills</span></div>
-              <div class="node a5"><small>Twice a day</small><strong>Telegram</strong><span>Reminders for anything due</span></div>
+              <div class="node ghost a4"><small data-i18n="jarvis.10">Drives the jobs</small><strong>Claude Code</strong><span data-i18n="jarvis.11">Long-term memory and custom skills</span></div>
+              <div class="node a5"><small data-i18n="jarvis.12">Twice a day</small><strong>Telegram</strong><span data-i18n="jarvis.13">Reminders for anything due</span></div>
             </div>
-            <div class="legend" aria-hidden="true"><span><i class="h"></i>Runs on its own</span><span><i class="d"></i>Assistant layer</span><span><i></i>Inputs and outputs</span></div>
+            <div class="legend" aria-hidden="true"><span><i class="h"></i><em style="font-style:normal" data-i18n="jarvis.14">Runs on its own</em></span><span><i class="d"></i><em style="font-style:normal" data-i18n="jarvis.15">Assistant layer</em></span><span><i></i><em style="font-style:normal" data-i18n="jarvis.16">Inputs and outputs</em></span></div>
           </div>
           <div class="body">
-            <div class="meta"><span class="pill">Private</span><span class="pill">Personal project</span><span class="pill">Jun 2026 to now</span></div>
-            <h3 id="p2">Jarvis: personal AI assistant</h3>
-            <p class="lede">An assistant with long-term memory, custom skills and scheduled jobs. Its biggest part is StudyTracker, which keeps track of everything I have due at school.</p>
+            <div class="meta"><span class="pill" data-i18n="jarvis.17">Private</span><span class="pill" data-i18n="jarvis.18">Personal project</span><span class="pill" data-i18n="jarvis.19">Jun 2026 to now</span></div>
+            <h3 id="p2" data-i18n="jarvis.20">Jarvis: personal AI assistant</h3>
+            <p class="lede" data-i18n="jarvis.21">An assistant with long-term memory, custom skills and scheduled jobs. Its biggest part is StudyTracker, which keeps track of everything I have due at school.</p>
             <div class="role">
-              <b>What it does</b>
+              <b data-i18n="jarvis.22">What it does</b>
               <ul>
-                <li>StudyTracker, the study dashboard, pulls deadlines and submission status from the school LMS every morning and keeps a calendar in sync.</li>
-                <li>Telegram reminders go out twice a day so nothing due gets missed.</li>
-                <li>I add each automation one at a time, when a real need comes up.</li>
+                <li data-i18n="jarvis.23">StudyTracker, the study dashboard, pulls deadlines and submission status from the school LMS every morning and keeps a calendar in sync.</li>
+                <li data-i18n="jarvis.24">Telegram reminders go out twice a day so nothing due gets missed.</li>
+                <li data-i18n="jarvis.25">I add each automation one at a time, when a real need comes up.</li>
               </ul>
             </div>
-            <ul class="tags" aria-label="Built with"><li>Claude Code</li><li>Node.js</li><li>GitHub Actions</li><li>Linux server</li><li>Telegram bot</li></ul>
-            <p class="note">Private, as it works with my own school accounts. Happy to walk through it in an interview.</p>
+            <ul class="tags" aria-label="Built with" data-i18n-label="jarvis.26"><li>Claude Code</li><li>Node.js</li><li>GitHub Actions</li><li data-i18n="jarvis.27">Linux server</li><li data-i18n="jarvis.28">Telegram bot</li></ul>
+            <p class="note" data-i18n="jarvis.29">Private, as it works with my own school accounts. Happy to walk through it in an interview.</p>
           </div>
         </article>
 
         <!-- HCMS -->
         <article class="card rise" aria-labelledby="p3">
-          <div class="visual diagram" role="img" aria-label="Architecture of the Hawker Centre Management System: a web client calls an Express REST API built with MVC and Joi validation, which stores menu items and cuisine tags in Microsoft SQL Server. The API also calls the data.gov.sg weather forecast and Nager.Date public holiday APIs for the stall owner prep planner.">
+          <div class="visual diagram" role="img" aria-label="Architecture of the Hawker Centre Management System: a web client calls an Express REST API built with MVC and Joi validation, which stores menu items and cuisine tags in Microsoft SQL Server. The API also calls the data.gov.sg weather forecast and Nager.Date public holiday APIs for the stall owner prep planner." data-i18n-label="hcms.01">
             <div aria-hidden="true">
               <div class="arch">
-                <div class="node"><small>Client</small><strong>Web app</strong><span>Used by stall owners</span></div>
+                <div class="node"><small data-i18n="hcms.02">Client</small><strong data-i18n="hcms.03">Web app</strong><span data-i18n="hcms.04">Used by stall owners</span></div>
                 <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
                 <div class="layers">
-                  <small>My part</small>
-                  <strong>Menu Management REST API</strong>
+                  <small data-i18n="hcms.05">My part</small>
+                  <strong data-i18n="hcms.06">Menu Management REST API</strong>
                   <div class="stack-rows">
-                    <div>Routes<span>Express</span></div>
-                    <div>Validation<span>Joi</span></div>
-                    <div>Controllers and models<span>MVC</span></div>
+                    <div><em style="font-style:normal" data-i18n="hcms.07">Routes</em><span>Express</span></div>
+                    <div><em style="font-style:normal" data-i18n="hcms.08">Validation</em><span>Joi</span></div>
+                    <div><em style="font-style:normal" data-i18n="hcms.09">Controllers and models</em><span>MVC</span></div>
                   </div>
                   <div class="verbs"><b class="g">GET</b><b class="p">POST</b><b class="u">PUT</b><b class="d">DELETE</b></div>
                 </div>
                 <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-                <div class="node"><small>Database</small><strong>SQL Server</strong><span>Menu items and cuisine tags, many-to-many, saved in one transaction</span></div>
+                <div class="node"><small data-i18n="hcms.10">Database</small><strong>SQL Server</strong><span data-i18n="hcms.11">Menu items and cuisine tags, many-to-many, saved in one transaction</span></div>
               </div>
               <div class="arch-ext">
-                <p class="lead">Called server-side for the stall owner prep planner</p>
-                <div class="node ghost"><small>External API</small><strong>data.gov.sg</strong><span>Weather forecast</span></div>
-                <div class="node ghost"><small>External API</small><strong>Nager.Date</strong><span>Public holidays</span></div>
+                <p class="cap" data-i18n="hcms.12">Called server-side for the stall owner prep planner</p>
+                <div class="node ghost"><small data-i18n="hcms.13">External API</small><strong>data.gov.sg</strong><span data-i18n="hcms.14">Weather forecast</span></div>
+                <div class="node ghost"><small data-i18n="hcms.15">External API</small><strong>Nager.Date</strong><span data-i18n="hcms.16">Public holidays</span></div>
               </div>
             </div>
           </div>
           <div class="body">
-            <div class="meta"><span class="pill">School group project</span><span class="pill">Team of five</span><span class="pill">Apr to Aug 2026</span></div>
-            <h3 id="p3">Hawker Centre Management System</h3>
-            <p class="lede">A management system for hawker centre stalls. I led the team of five and built the menu side of the back end.</p>
+            <div class="meta"><span class="pill" data-i18n="hcms.17">School group project</span><span class="pill" data-i18n="hcms.18">Team of five</span><span class="pill" data-i18n="hcms.19">Apr to Aug 2026</span></div>
+            <h3 id="p3" data-i18n="hcms.20">Hawker Centre Management System</h3>
+            <p class="lede" data-i18n="hcms.21">A management system for hawker centre stalls. I led the team of five and built the menu side of the back end.</p>
             <div class="role">
-              <b>My role: team leader</b>
+              <b data-i18n="hcms.22">My role: team leader</b>
               <ul>
-                <li>Set up the GitHub branch and pull request workflow, reviewed and merged every PR, and ran Scrum sprints in Jira.</li>
-                <li>Built the Menu Management REST API: full CRUD on menu items, with many-to-many cuisine tags saved in one SQL transaction, using MVC, Joi validation and parameterised queries.</li>
-                <li>Integrated the data.gov.sg weather forecast and Nager.Date public holiday APIs server-side for a stall owner prep planner.</li>
+                <li data-i18n="hcms.23">Set up the GitHub branch and pull request workflow, reviewed and merged every PR, and ran Scrum sprints in Jira.</li>
+                <li data-i18n="hcms.24">Built the Menu Management REST API: full CRUD on menu items, with many-to-many cuisine tags saved in one SQL transaction, using MVC, Joi validation and parameterised queries.</li>
+                <li data-i18n="hcms.25">Integrated the data.gov.sg weather forecast and Nager.Date public holiday APIs server-side for a stall owner prep planner.</li>
               </ul>
             </div>
-            <ul class="tags" aria-label="Built with"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>REST API</li><li>Jira</li><li>Scrum</li></ul>
+            <ul class="tags" aria-label="Built with" data-i18n-label="hcms.26"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>REST API</li><li>Jira</li><li>Scrum</li></ul>
           </div>
         </article>
       </div>
@@ -454,33 +521,33 @@
     <section class="sec" id="experience" aria-labelledby="exp-h">
       <div class="sec-head rise">
         <div>
-          <p class="num"><b>02</b>Experience</p>
-          <h2 id="exp-h">Work</h2>
+          <p class="num"><b>02</b><span data-i18n="experience.01">Experience</span></p>
+          <h2 id="exp-h" data-i18n="experience.02">Work</h2>
         </div>
-        <p>Part-time work alongside school, in ride operations and retail.</p>
+        <p data-i18n="experience.03">Part-time work alongside school, in ride operations and retail.</p>
       </div>
       <div class="entries">
         <article class="entry rise">
-          <p class="when">Jun 2024 to now</p>
+          <p class="when" data-i18n="experience.04">Jun 2024 to now</p>
           <div>
-            <h3>Crew, Rides Operations</h3>
-            <p class="org">Universal Studios Singapore, Resorts World Sentosa (part-time)</p>
+            <h3 data-i18n="experience.05">Crew, Rides Operations</h3>
+            <p class="org" data-i18n="experience.06">Universal Studios Singapore, Resorts World Sentosa (part-time)</p>
             <ul class="pts">
-              <li>Operate the ride control console, monitor the ride during operation and handle situations as they come up.</li>
-              <li>Follow emergency stop procedures and support the technical team during ride downtime and guest evacuation.</li>
-              <li>Check lap bars, harnesses and seat belts before every dispatch, and enforce ride height and safety requirements.</li>
-              <li>Manage queues and large guest groups, give directions and handle guest concerns.</li>
+              <li data-i18n="experience.07">Operate the ride control console, monitor the ride during operation and handle situations as they come up.</li>
+              <li data-i18n="experience.08">Follow emergency stop procedures and support the technical team during ride downtime and guest evacuation.</li>
+              <li data-i18n="experience.09">Check lap bars, harnesses and seat belts before every dispatch, and enforce ride height and safety requirements.</li>
+              <li data-i18n="experience.10">Manage queues and large guest groups, give directions and handle guest concerns.</li>
             </ul>
           </div>
         </article>
         <article class="entry rise">
-          <p class="when">Mar to May 2024</p>
+          <p class="when" data-i18n="experience.11">Mar to May 2024</p>
           <div>
-            <h3>Sales Consultant</h3>
-            <p class="org">Skechers (temporary)</p>
+            <h3 data-i18n="experience.12">Sales Consultant</h3>
+            <p class="org" data-i18n="experience.13">Skechers (temporary)</p>
             <ul class="pts">
-              <li>Advised customers on products and sizing, working with the team to hit store sales targets.</li>
-              <li>Kept up with new releases and product trends to give accurate recommendations.</li>
+              <li data-i18n="experience.14">Advised customers on products and sizing, working with the team to hit store sales targets.</li>
+              <li data-i18n="experience.15">Kept up with new releases and product trends to give accurate recommendations.</li>
             </ul>
           </div>
         </article>
@@ -490,42 +557,42 @@
     <section class="sec" id="education" aria-labelledby="edu-h">
       <div class="sec-head rise">
         <div>
-          <p class="num"><b>03</b>Education</p>
-          <h2 id="edu-h">Education and training</h2>
+          <p class="num"><b>03</b><span data-i18n="education.01">Education</span></p>
+          <h2 id="edu-h" data-i18n="education.02">Education and training</h2>
         </div>
       </div>
       <div class="entries">
         <article class="entry rise">
-          <p class="when">Apr 2025 to Mar 2028<br>(expected)</p>
+          <p class="when" data-i18n="education.03">Apr 2025 to Mar 2028<br>(expected)</p>
           <div>
-            <h3>Diploma in Information Technology</h3>
-            <p class="org">Ngee Ann Polytechnic</p>
-            <p class="d"><strong>Cumulative GPA 3.92 / 4.00.</strong> Director's List, Dec 2025 and Jun 2026.</p>
-            <p class="d">Relevant modules: Back-End Development, Software Design Patterns, Software Project Management, Data Structures and Algorithms, DevOps, Full Stack Development Project.</p>
-            <p class="d">Diploma Plus: Certificate in Advanced Computing Mathematics (Advanced Statistics, Calculus, Discrete Mathematics), completing Feb 2027. CCA: Recreational Badminton Club. Industry engagement: SGTech Tech Career Launchpad, Oct 2026.</p>
+            <h3 data-i18n="education.04">Diploma in Information Technology</h3>
+            <p class="org" data-i18n="education.05">Ngee Ann Polytechnic</p>
+            <p class="d" data-i18n="education.06"><strong>Cumulative GPA 3.92 / 4.00.</strong> Director's List, Dec 2025 and Jun 2026.</p>
+            <p class="d" data-i18n="education.07">Relevant modules: Back-End Development, Software Design Patterns, Software Project Management, Data Structures and Algorithms, DevOps, Full Stack Development Project.</p>
+            <p class="d" data-i18n="education.08">Diploma Plus: Certificate in Advanced Computing Mathematics (Advanced Statistics, Calculus, Discrete Mathematics), completing Feb 2027. CCA: Recreational Badminton Club. Industry engagement: SGTech Tech Career Launchpad, Oct 2026.</p>
           </div>
         </article>
         <article class="entry rise">
-          <p class="when">Jun 2025 to Sep 2026</p>
+          <p class="when" data-i18n="education.09">Jun 2025 to Sep 2026</p>
           <div>
-            <h3>Sentinel Programme</h3>
-            <p class="org">Digital and Intelligence Service (DIS), MINDEF/SAF</p>
-            <p class="d">Trained in Python, computer networks, network forensics, network intrusion detection and AI for security. Built a Python endpoint detection and response (EDR) tool for Windows in the final workshop.</p>
+            <h3 data-i18n="education.10">Sentinel Programme</h3>
+            <p class="org" data-i18n="education.11">Digital and Intelligence Service (DIS), MINDEF/SAF</p>
+            <p class="d" data-i18n="education.12">Trained in Python, computer networks, network forensics, network intrusion detection and AI for security. Built a Python endpoint detection and response (EDR) tool for Windows in the final workshop.</p>
           </div>
         </article>
         <article class="entry rise">
-          <p class="when">Apr 2024 to Feb 2025</p>
+          <p class="when" data-i18n="education.13">Apr 2024 to Feb 2025</p>
           <div>
-            <h3>Polytechnic Foundation Programme</h3>
-            <p class="org">Ngee Ann Polytechnic</p>
-            <p class="d">Where I started leading group projects, which I have done in school ever since.</p>
+            <h3 data-i18n="education.14">Polytechnic Foundation Programme</h3>
+            <p class="org" data-i18n="education.15">Ngee Ann Polytechnic</p>
+            <p class="d" data-i18n="education.16">Where I started leading group projects, which I have done in school ever since.</p>
           </div>
         </article>
         <article class="entry rise">
-          <p class="when">Feb 2022 to Oct 2023</p>
+          <p class="when" data-i18n="education.17">Feb 2022 to Oct 2023</p>
           <div>
-            <h3>GCE N(A) Level</h3>
-            <p class="org">Anderson Secondary School</p>
+            <h3 data-i18n="education.18">GCE N(A) Level</h3>
+            <p class="org" data-i18n="education.19">Anderson Secondary School</p>
           </div>
         </article>
       </div>
@@ -534,39 +601,39 @@
     <section class="sec" id="skills" aria-labelledby="skills-h">
       <div class="sec-head rise">
         <div>
-          <p class="num"><b>04</b>Skills</p>
-          <h2 id="skills-h">Skills and certifications</h2>
+          <p class="num"><b>04</b><span data-i18n="skills.01">Skills</span></p>
+          <h2 id="skills-h" data-i18n="skills.02">Skills and certifications</h2>
         </div>
       </div>
       <div class="skillgrid">
-        <div class="sk rise"><h3>Programming</h3><ul class="tags"><li>Python</li><li>JavaScript</li><li>C#</li><li>SQL (T-SQL)</li><li>HTML</li><li>CSS</li><li>C++ (learning)</li></ul></div>
-        <div class="sk rise"><h3>Tools and frameworks</h3><ul class="tags"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>Git and GitHub</li><li>GitHub Actions</li><li>Linux</li><li>Postman</li><li>Jira</li><li>Visual Studio</li><li>Visual Paradigm</li><li>Claude Code</li></ul></div>
-        <div class="sk rise"><h3>Practices</h3><ul class="tags"><li>Agile and Scrum</li><li>MVC</li><li>REST APIs</li><li>UML</li><li>Object-oriented design patterns</li></ul></div>
-        <div class="sk rise"><h3>Languages</h3><p>Chinese, fluent, spoken and written. English, good, spoken and written. Malay, conversational spoken, basic written.</p></div>
+        <div class="sk rise"><h3 data-i18n="skills.03">Programming</h3><ul class="tags"><li>Python</li><li>JavaScript</li><li>C#</li><li>SQL (T-SQL)</li><li>HTML</li><li>CSS</li><li data-i18n="skills.04">C++ (learning)</li></ul></div>
+        <div class="sk rise"><h3 data-i18n="skills.05">Tools and frameworks</h3><ul class="tags"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li data-i18n="skills.06">Git and GitHub</li><li>GitHub Actions</li><li>Linux</li><li>Postman</li><li>Jira</li><li>Visual Studio</li><li>Visual Paradigm</li><li>Claude Code</li></ul></div>
+        <div class="sk rise"><h3 data-i18n="skills.07">Practices</h3><ul class="tags"><li data-i18n="skills.08">Agile and Scrum</li><li>MVC</li><li>REST APIs</li><li>UML</li><li data-i18n="skills.09">Object-oriented design patterns</li></ul></div>
+        <div class="sk rise"><h3 data-i18n="skills.10">Languages</h3><p data-i18n="skills.11">Chinese, fluent, spoken and written. English, good, spoken and written. Malay, conversational spoken, basic written.</p></div>
       </div>
       <div class="certs rise">
-        <h3>Certifications</h3>
+        <h3 data-i18n="skills.12">Certifications</h3>
         <ul>
-          <li><span><span class="n">Learning C++</span><span class="by">LinkedIn Learning</span></span><span class="when">Nov 2026</span></li>
-          <li><span><span class="n">LUMA Institute Foundation Course</span><span class="by">LUMA Institute</span></span><span class="when">Apr 2026</span></li>
-          <li><span><span class="n">PolyVenture Inter-Poly China Corporate Visit Programme</span><span class="by">Business China</span></span><span class="when">Mar 2026</span></li>
-          <li><span><span class="n">NETS QR Web Payment Gateway (Sandbox)</span><span class="by">NETS with NP School of ICT</span></span><span class="when">Jan 2026</span></li>
-          <li><span><span class="n">JavaScript: Enhancing the DOM</span><span class="by">LinkedIn Learning</span></span><span class="when">Nov 2025</span></li>
-          <li><span><span class="n">AI Ready ASEAN</span><span class="by">ASEAN Foundation, supported by Google.org</span></span><span class="when">Oct 2025</span></li>
-          <li><span><span class="n">PCEP, Certified Entry-Level Python Programmer</span><span class="by">OpenEDG Python Institute</span></span><span class="when">Aug 2025</span></li>
-          <li><span><span class="n">Cybersecurity Fundamentals</span><span class="by">IBM SkillsBuild</span></span><span class="when">Aug 2025</span></li>
-          <li><span><span class="n">Google AI Essentials</span><span class="by">Google, via Coursera</span></span><span class="when">Jul 2025</span></li>
+          <li><span><span class="n">Learning C++</span><span class="by">LinkedIn Learning</span></span><span class="when" data-i18n="skills.13">Nov 2026</span></li>
+          <li><span><span class="n">LUMA Institute Foundation Course</span><span class="by">LUMA Institute</span></span><span class="when" data-i18n="skills.14">Apr 2026</span></li>
+          <li><span><span class="n">PolyVenture Inter-Poly China Corporate Visit Programme</span><span class="by" data-i18n="skills.15">Business China</span></span><span class="when" data-i18n="skills.16">Mar 2026</span></li>
+          <li><span><span class="n">NETS QR Web Payment Gateway (Sandbox)</span><span class="by" data-i18n="skills.17">NETS with NP School of ICT</span></span><span class="when" data-i18n="skills.18">Jan 2026</span></li>
+          <li><span><span class="n">JavaScript: Enhancing the DOM</span><span class="by">LinkedIn Learning</span></span><span class="when" data-i18n="skills.19">Nov 2025</span></li>
+          <li><span><span class="n">AI Ready ASEAN</span><span class="by" data-i18n="skills.20">ASEAN Foundation, supported by Google.org</span></span><span class="when" data-i18n="skills.21">Oct 2025</span></li>
+          <li><span><span class="n">PCEP, Certified Entry-Level Python Programmer</span><span class="by">OpenEDG Python Institute</span></span><span class="when" data-i18n="skills.22">Aug 2025</span></li>
+          <li><span><span class="n">Cybersecurity Fundamentals</span><span class="by">IBM SkillsBuild</span></span><span class="when" data-i18n="skills.23">Aug 2025</span></li>
+          <li><span><span class="n">Google AI Essentials</span><span class="by" data-i18n="skills.24">Google, via Coursera</span></span><span class="when" data-i18n="skills.25">Jul 2025</span></li>
         </ul>
       </div>
     </section>
 
     <section class="contact rise" id="contact" aria-labelledby="contact-h">
-      <p class="num"><b>05</b>Contact</p>
-      <h2 id="contact-h" class="contact-h">Get in touch</h2>
-      <p>Email is the quickest way to reach me. I'm also on LinkedIn, and my code is on GitHub.</p>
+      <p class="num"><b>05</b><span data-i18n="contact.01">Contact</span></p>
+      <h2 id="contact-h" class="contact-h" data-i18n="contact.02">Get in touch</h2>
+      <p data-i18n="contact.03">Email is the quickest way to reach me. I'm also on LinkedIn, and my code is on GitHub.</p>
       <a class="mail" href="mailto:kahchunn@gmail.com">kahchunn@gmail.com</a>
       <div class="cta">
-        <a class="btn primary" href="mailto:kahchunn@gmail.com">Send me an email</a>
+        <a class="btn primary" href="mailto:kahchunn@gmail.com" data-i18n="contact.04">Send me an email</a>
         <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/KCJJ0203" rel="noopener">GitHub</a>
       </div>
@@ -574,14 +641,60 @@
   </main>
 
   <footer>
-    <span>&copy; 2026 Ngoo Kah Chun, Singapore</span>
-    <span>Last updated Nov 2026</span>
+    <span data-i18n="footer.01">&copy; 2026 Ngoo Kah Chun, Singapore</span>
+    <span data-i18n="footer.02">Last updated Nov 2026</span>
   </footer>
 </div>
 
 <script>
-  // Reveal elements as they scroll into view (skipped when reduced motion is on)
   (function () {
+    // Language switch: English is in the markup, other languages load from i18n/<lang>.json.
+    // The switch stays hidden until zh.json actually differs from en.json.
+    var root = document.documentElement;
+    var texts = document.querySelectorAll('[data-i18n]');
+    var labels = document.querySelectorAll('[data-i18n-label]');
+    var alts = document.querySelectorAll('[data-i18n-alt]');
+    var switcher = document.querySelector('.lang');
+    var buttons = switcher.querySelectorAll('button');
+    var en = {};
+    texts.forEach(function (el) { en[el.getAttribute('data-i18n')] = el.innerHTML; });
+    labels.forEach(function (el) { en[el.getAttribute('data-i18n-label')] = el.getAttribute('aria-label') || ''; });
+    alts.forEach(function (el) { en[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt') || ''; });
+    en['meta.title'] = document.title;
+    var dict = { en: en, zh: null };
+
+    function apply(lang, save) {
+      var t = dict[lang] || en;
+      function get(k) { return Object.prototype.hasOwnProperty.call(t, k) ? t[k] : en[k]; }
+      root.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+      texts.forEach(function (el) { el.innerHTML = get(el.getAttribute('data-i18n')); });
+      labels.forEach(function (el) { el.setAttribute('aria-label', get(el.getAttribute('data-i18n-label'))); });
+      alts.forEach(function (el) { el.setAttribute('alt', get(el.getAttribute('data-i18n-alt'))); });
+      document.title = get('meta.title');
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+      if (save) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+
+    function load(name) { return fetch('i18n/' + name + '.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    if (window.fetch) {
+      Promise.all([load('en'), load('zh')]).then(function (res) {
+        var src = res[0], zh = res[1];
+        var differs = Object.keys(src).some(function (k) { return zh[k] && zh[k] !== src[k]; });
+        if (!differs) return;
+        dict.zh = zh;
+        switcher.hidden = false;
+        buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang'), true); }); });
+        var pick = 'en';
+        try {
+          var q = new URLSearchParams(location.search).get('lang');
+          if (q === 'zh' || q === 'en') pick = q;
+          else { var saved = localStorage.getItem('lang'); if (saved === 'zh' || saved === 'en') pick = saved; }
+        } catch (e) {}
+        if (pick === 'zh') apply('zh', false);
+      }).catch(function () {});
+    }
+
+    // Reveal elements as they scroll into view (skipped when reduced motion is on)
     var els = document.querySelectorAll('.rise');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
