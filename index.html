@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ngoo Kah Chun | Portfolio</title>
+<meta name="description" content="Ngoo Kah Chun, Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Projects and skills.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231F3864'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EKC%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1b1f24;
+    --muted: #5a6270;
+    --line: #e1e4ea;
+    --accent: #1F3864;
+    --accent-soft: #e8edf6;
+    --tag-text: #1F3864;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #11141a;
+      --card: #191d25;
+      --text: #e6e8ec;
+      --muted: #9aa3b2;
+      --line: #2a303c;
+      --accent: #8fb0e8;
+      --accent-soft: #222c3f;
+      --tag-text: #c3d4f2;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  header.top {
+    border-top: 6px solid #1F3864;
+    padding: 56px 0 32px;
+  }
+  h1 { margin: 0; font-size: 2.1rem; line-height: 1.2; letter-spacing: -0.01em; }
+  .intro { margin: 10px 0 0; font-size: 1.1rem; color: var(--muted); max-width: 620px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+
+  section { padding: 20px 0 8px; }
+  h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .projects { display: grid; gap: 14px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
+  .card h3 { margin: 0; font-size: 1.15rem; }
+  .when { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  .kind { font-size: 0.85rem; color: var(--muted); margin: 2px 0 0; }
+  .card p { margin: 10px 0 0; }
+  .card ul { margin: 8px 0 0; padding-left: 20px; }
+  .card li { margin: 4px 0; }
+  .status {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--tag-text);
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
+  .tags li {
+    font-size: 0.8rem;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--tag-text);
+    margin: 0;
+  }
+  .card .visit { display: inline-block; margin-top: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+  .card .visit:hover { text-decoration: underline; }
+
+  .skills { display: grid; gap: 12px; }
+  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 6px 14px; align-items: start; }
+  .skill-row .label { font-weight: 600; font-size: 0.95rem; padding-top: 2px; }
+  .skill-row .tags { margin-top: 0; }
+
+  footer {
+    margin-top: 40px;
+    padding: 24px 0 40px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 560px) {
+    header.top { padding: 36px 0 24px; }
+    h1 { font-size: 1.7rem; }
+    .card { padding: 16px; }
+    .skill-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Ngoo Kah Chun</h1>
+    <p class="intro">Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Interested in software development and AI tools.</p>
+    <nav class="links" aria-label="Profiles">
+      <a class="btn" href="https://github.com/KCJJ0203" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.15C0 .52.52 0 1.17 0h13.66C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.17 1.15H1.17C.52 16 0 15.48 0 14.85V1.15zM4.94 13.4V6.17H2.53v7.23h2.41zM3.74 5.18c.84 0 1.36-.56 1.36-1.25-.02-.71-.52-1.25-1.35-1.25-.82 0-1.36.54-1.36 1.25 0 .69.52 1.25 1.33 1.25h.02zm2.54 8.22h2.4V9.36c0-.21.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.26c0-2.22-1.18-3.25-2.77-3.25-1.28 0-1.84.7-2.16 1.2v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.23 0 7.23z"/></svg>
+        LinkedIn
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Carpark SG</h3>
+            <span class="when">Aug 2026 - Present</span>
+          </div>
+          <p class="kind">Personal project, live</p>
+          <p>A live web map of 2,970 HDB, URA and LTA carparks in Singapore that tells drivers what time to park for the lowest fee, not just where to park.</p>
+          <ul>
+            <li>Came up with the idea, planned each feature, and tested every release.</li>
+            <li>Built with an AI coding agent (Claude Code), with me directing the work and checking the results.</li>
+            <li>Carpark data is collected every 30 minutes on a Linux server, with GitHub Actions as a backup.</li>
+          </ul>
+          <ul class="tags">
+            <li>JavaScript</li><li>Linux server</li><li>GitHub Actions</li><li>Claude Code</li>
+          </ul>
+          <a class="visit" href="https://kcjj0203.github.io/carpark-sg/" target="_blank" rel="noopener">Open Carpark SG &rarr;</a>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Jarvis</h3>
+            <span class="when">Jun 2026 - Present</span>
+          </div>
+          <p class="kind">Personal project, private</p>
+          <p>A personal AI assistant built on Claude Code, with long-term memory, custom skills and scheduled jobs. I add each automation one at a time as a real need comes up.</p>
+          <ul>
+            <li>Includes a study dashboard that pulls deadlines and submission status from the school LMS every morning.</li>
+            <li>Sends Telegram reminders twice a day so nothing due gets missed.</li>
+          </ul>
+          <ul class="tags">
+            <li>Claude Code</li><li>Node.js</li><li>GitHub Actions</li><li>Linux server</li><li>Telegram bot</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Hawker Centre Management System</h3>
+            <span class="when">Apr 2026 - Aug 2026</span>
+          </div>
+          <p class="kind">School group project, team of five</p>
+          <ul>
+            <li>Team leader: set up the GitHub branch and pull-request workflow, reviewed and merged every PR, and ran Scrum sprints in Jira.</li>
+            <li>Built the Menu Management REST API: full CRUD on menu items with many-to-many cuisine tags saved in one SQL transaction, using MVC, Joi validation and parameterised queries.</li>
+            <li>Integrated the data.gov.sg weather forecast and Nager.Date public-holiday APIs server-side for a stall owner prep planner.</li>
+          </ul>
+          <ul class="tags">
+            <li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>REST API</li><li>Jira</li><li>Scrum</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill-row">
+          <span class="label">Programming</span>
+          <ul class="tags"><li>Python</li><li>JavaScript</li><li>C#</li><li>SQL (T-SQL)</li><li>HTML</li><li>CSS</li><li>C++ (learning)</li></ul>
+        </div>
+        <div class="skill-row">
+          <span class="label">Tools &amp; Frameworks</span>
+          <ul class="tags"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>Git / GitHub</li><li>GitHub Actions</li><li>Linux</li><li>Postman</li><li>Jira</li><li>Visual Studio</li><li>Claude Code</li></ul>
+        </div>
+        <div class="skill-row">
+          <span class="label">Practices</span>
+          <ul class="tags"><li>Agile / Scrum</li><li>MVC</li><li>REST APIs</li><li>UML</li><li>Design patterns</li></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Ngoo Kah Chun
+  </footer>
+
+</div>
+</body>
+</html>
