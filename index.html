@@ -1,238 +1,595 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ngoo Kah Chun | Portfolio</title>
-<meta name="description" content="Ngoo Kah Chun, Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Projects and skills.">
-<meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231F3864'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EKC%3C/text%3E%3C/svg%3E">
+<title>Ngoo Kah Chun</title>
+<meta name="description" content="Ngoo Kah Chun, Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Projects, experience, awards and contact.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
 <style>
   :root {
-    --bg: #f6f7f9;
-    --card: #ffffff;
-    --text: #1b1f24;
-    --muted: #5a6270;
-    --line: #e1e4ea;
-    --accent: #1F3864;
-    --accent-soft: #e8edf6;
-    --tag-text: #1F3864;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #11141a;
-      --card: #191d25;
-      --text: #e6e8ec;
-      --muted: #9aa3b2;
-      --line: #2a303c;
-      --accent: #8fb0e8;
-      --accent-soft: #222c3f;
-      --tag-text: #c3d4f2;
-    }
+    --bg: #0d0f12;
+    --s1: #14171b;
+    --s2: #1a1e23;
+    --s3: #222730;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-2: rgba(255, 255, 255, 0.14);
+    --ink: #eef0f3;
+    --muted: #a1a8b2;
+    --faint: #6f7782;
+    --red: #ef3b36;
+    --red-soft: rgba(239, 59, 54, 0.14);
+    --red-glow: rgba(239, 59, 54, 0.28);
+    --ease: cubic-bezier(.2, .7, .2, 1);
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    color: var(--ink);
+    font: 400 17px/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+  /* Backdrop: a faint red light behind the hero, plus film grain */
+  body::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 1100px; pointer-events: none; z-index: -1;
+    background:
+      radial-gradient(600px 420px at 78% 260px, rgba(239, 59, 54, 0.13), transparent 70%),
+      radial-gradient(900px 600px at 10% -10%, rgba(120, 140, 170, 0.08), transparent 70%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--line-2); transition: color .2s, text-decoration-color .2s; }
+  a:hover { text-decoration-color: var(--red); }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; border-radius: 6px; }
+  img { display: block; max-width: 100%; height: auto; }
+  h1, h2, h3, p, ul, figure { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  ::selection { background: var(--red); color: #fff; }
 
-  header.top {
-    border-top: 6px solid #1F3864;
-    padding: 56px 0 32px;
-  }
-  h1 { margin: 0; font-size: 2.1rem; line-height: 1.2; letter-spacing: -0.01em; }
-  .intro { margin: 10px 0 0; font-size: 1.1rem; color: var(--muted); max-width: 620px; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); }
-  .btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+  .skip { position: absolute; left: 16px; top: -60px; background: var(--red); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 200; text-decoration: none; font-weight: 600; }
+  .skip:focus { top: 12px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 760px) { .wrap { padding: 0 40px; } }
 
-  section { padding: 20px 0 8px; }
-  h2 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    margin: 0 0 14px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--line);
-  }
+  /* Top bar */
+  .bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); background: rgba(13, 15, 18, 0.72); border-bottom: 1px solid transparent; }
+  .bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 64px; }
+  .bar .me { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+  .bar nav { display: flex; gap: 26px; font-size: 0.95rem; }
+  .bar nav a { color: var(--muted); text-decoration: none; }
+  .bar nav a:hover { color: var(--ink); }
+  @media (max-width: 680px) { .bar nav .opt { display: none; } }
 
-  .projects { display: grid; gap: 14px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--accent);
-    border-radius: 10px;
-    padding: 18px 20px;
+  /* Hero */
+  .hero { display: grid; gap: 40px; padding: 56px 0 56px; align-items: center; }
+  @media (min-width: 940px) { .hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; padding: 104px 0 96px; } }
+  .status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 12px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 0.9rem; color: var(--muted); background: rgba(255,255,255,0.02); }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 0 var(--red-glow); animation: pulse 2.4s var(--ease) infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,59,54,.5); } 70%, 100% { box-shadow: 0 0 0 9px rgba(239,59,54,0); } }
+  .statement {
+    margin-top: 28px;
+    font-size: clamp(2.5rem, 6.4vw, 5.6rem);
+    font-weight: 700;
+    font-stretch: 88%;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
-  .card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
-  .card h3 { margin: 0; font-size: 1.15rem; }
-  .when { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
-  .kind { font-size: 0.85rem; color: var(--muted); margin: 2px 0 0; }
-  .card p { margin: 10px 0 0; }
-  .card ul { margin: 8px 0 0; padding-left: 20px; }
-  .card li { margin: 4px 0; }
-  .status {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 1px 8px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--tag-text);
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
-  .tags li {
-    font-size: 0.8rem;
-    padding: 2px 9px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--tag-text);
-    margin: 0;
-  }
-  .card .visit { display: inline-block; margin-top: 12px; font-weight: 600; font-size: 0.95rem; text-decoration: none; }
-  .card .visit:hover { text-decoration: underline; }
+  .statement .name { display: block; color: var(--ink); }
+  .statement .rest { display: block; color: #c9ced6; font-weight: 600; }
+  .sub { margin-top: 28px; font-size: clamp(1.05rem, 1.6vw, 1.2rem); max-width: 34em; color: var(--muted); }
+  .sub b { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 0.98rem; text-decoration: none; border: 1px solid var(--line-2); color: var(--ink); background: rgba(255,255,255,0.03); transition: border-color .2s, background .2s, transform .2s var(--ease), box-shadow .2s; }
+  .btn svg { width: 17px; height: 17px; fill: currentColor; flex: none; }
+  .btn:hover { border-color: rgba(255,255,255,0.32); background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+  .btn.primary { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 8px 28px -10px var(--red-glow); }
+  .btn.primary:hover { background: #f5524d; border-color: #f5524d; box-shadow: 0 10px 34px -8px rgba(239,59,54,.5); }
 
-  .skills { display: grid; gap: 12px; }
-  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 6px 14px; align-items: start; }
-  .skill-row .label { font-weight: 600; font-size: 0.95rem; padding-top: 2px; }
-  .skill-row .tags { margin-top: 0; }
+  .sun { position: relative; width: min(100%, 380px); justify-self: center; }
+  .sun .disc { position: relative; aspect-ratio: 1; }
+  .sun .disc::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--red); transform: translate(10%, -8%); box-shadow: 0 0 120px -10px var(--red-glow); }
+  .sun img { position: relative; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; background: #8f9297; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+  .sun figcaption { margin-top: 18px; display: flex; gap: 10px; align-items: baseline; color: var(--faint); font-size: 0.95rem; }
+  .sun .zh { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; color: var(--ink); font-size: 1.15rem; letter-spacing: 0.12em; }
+  @media (max-width: 939px) { .sun { width: 190px; justify-self: start; order: -1; } }
 
-  footer {
-    margin-top: 40px;
-    padding: 24px 0 40px;
-    border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 0.9rem;
+  /* Proof strip */
+  .proof { display: grid; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01)); overflow: hidden; }
+  @media (min-width: 900px) { .proof { grid-template-columns: 1.15fr 1fr 1fr; } }
+  .proof > div { padding: 24px 22px 26px; border-top: 1px solid var(--line); }
+  .proof > div:first-child { border-top: 0; }
+  @media (min-width: 900px) { .proof > div { padding: 30px 32px 32px; border-top: 0; border-left: 1px solid var(--line); } .proof > div:first-child { border-left: 0; } }
+  .proof .lbl { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--faint); margin-bottom: 12px; }
+  .proof .won { color: #fff; background: var(--red); padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+  .proof h3 { font-size: 1.4rem; font-weight: 700; font-stretch: 92%; letter-spacing: -0.015em; line-height: 1.2; }
+  .proof p { color: var(--muted); font-size: 0.98rem; margin-top: 8px; }
+  .proof .big { font-size: 1.4rem; }
+
+  /* Section heads */
+  .sec { padding-top: 136px; scroll-margin-top: 48px; }
+  @media (max-width: 759px) { .sec { padding-top: 96px; } }
+  .sec-head { display: grid; gap: 10px; margin-bottom: 40px; }
+  @media (min-width: 900px) { .sec-head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 40px; } }
+  .num { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .num b { color: var(--red); font-weight: 600; }
+  .num::after { content: ""; height: 1px; width: 56px; background: var(--line-2); }
+  .sec-head h2 { margin-top: 10px; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.03em; line-height: 1; }
+  .sec-head p { color: var(--muted); max-width: 30em; }
+
+  /* Project cards */
+  .projects { display: grid; gap: 28px; }
+  .card { position: relative; display: grid; border: 1px solid var(--line); border-radius: 22px; background: var(--s1); overflow: hidden; transition: border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease); }
+  @media (min-width: 1000px) { .card { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+  @media (hover: hover) {
+    .card:hover { border-color: var(--line-2); transform: translateY(-3px); box-shadow: 0 30px 80px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(239,59,54,.10), 0 20px 70px -50px var(--red-glow); }
+    .card:hover .visual img { transform: scale(1.015); }
   }
+  .visual { position: relative; background: var(--s2); border-bottom: 1px solid var(--line); overflow: hidden; min-height: 300px; display: grid; }
+  @media (min-width: 1000px) { .visual { border-bottom: 0; border-right: 1px solid var(--line); min-height: 440px; } }
+  .visual img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .6s var(--ease); }
+  .body { padding: 28px 22px 30px; display: flex; flex-direction: column; }
+  @media (min-width: 760px) { .body { padding: 40px 40px 40px; } }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 500; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
+  .pill.live { color: #ffd9d7; border-color: rgba(239,59,54,.45); background: var(--red-soft); }
+  .pill.live i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .body h3 { margin-top: 18px; font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.025em; line-height: 1.02; }
+  .body .lede { margin-top: 14px; font-size: 1.1rem; line-height: 1.5; color: var(--ink); }
+  .role { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--muted); }
+  .role b { display: block; color: var(--faint); font-weight: 500; font-size: 0.85rem; margin-bottom: 6px; }
+  .role ul { display: grid; gap: 6px; }
+  .role li { padding-left: 16px; position: relative; }
+  .role li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 2px; background: var(--red); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .tags li { font-size: 0.8rem; padding: 4px 10px; border-radius: 7px; background: var(--s3); color: #c3c9d1; }
+  .body .cta { margin-top: 24px; }
+  .body .cta .btn { padding: 10px 18px; font-size: 0.93rem; }
+  .note { margin-top: 22px; font-size: 0.88rem; color: var(--faint); }
 
-  @media (max-width: 560px) {
-    header.top { padding: 36px 0 24px; }
-    h1 { font-size: 1.7rem; }
-    .card { padding: 16px; }
-    .skill-row { grid-template-columns: 1fr; }
+  /* Diagrams (shared) */
+  .diagram { position: relative; padding: 28px 18px; display: grid; align-content: center; gap: 0; background:
+      radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px) 0 0 / 18px 18px, var(--s2); }
+  @media (min-width: 760px) { .diagram { padding: 40px 36px; } }
+  .node { position: relative; background: var(--bg); border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; }
+  .node small { display: block; font-size: 0.75rem; color: var(--faint); margin-bottom: 2px; }
+  .node strong { display: block; font-size: 0.98rem; font-weight: 600; line-height: 1.25; }
+  .node span { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+  .node.hot { border-color: rgba(239,59,54,.55); box-shadow: 0 0 0 4px var(--red-soft), 0 16px 40px -20px var(--red-glow); }
+  .node.ghost { background: transparent; border-style: dashed; }
+  .arrow { position: relative; display: grid; place-items: center; color: var(--faint); }
+  .arrow svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Jarvis flow */
+  .flow { display: grid; gap: 10px; }
+  .flow .arrow svg { transform: rotate(90deg); }
+  @media (min-width: 640px) {
+    .flow { grid-template-columns: 1fr 28px 1fr 28px 1fr; grid-template-rows: auto auto auto; gap: 14px 6px; align-items: center; }
+    .flow .arrow svg { transform: none; }
+    .flow .a1 { grid-column: 1; grid-row: 1; }
+    .flow .x1 { grid-column: 2; grid-row: 1; }
+    .flow .a2 { grid-column: 3; grid-row: 1; }
+    .flow .x2 { grid-column: 4; grid-row: 1; }
+    .flow .a3 { grid-column: 5; grid-row: 1; }
+    .flow .up { grid-column: 3; grid-row: 2; }
+    .flow .up svg { transform: rotate(-90deg); }
+    .flow .dn { grid-column: 5; grid-row: 2; }
+    .flow .dn svg { transform: rotate(90deg); }
+    .flow .a4 { grid-column: 3; grid-row: 3; }
+    .flow .a5 { grid-column: 5; grid-row: 3; }
+  }
+  @media (max-width: 639px) {
+    .flow .up { display: none; }
+    .flow .a1 { order: 1; } .flow .x1 { order: 2; } .flow .a2 { order: 3; } .flow .x2 { order: 4; } .flow .a3 { order: 5; } .flow .dn { order: 6; } .flow .a5 { order: 7; } .flow .a4 { order: 8; margin-top: 14px; }
+  }
+  .legend { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.8rem; color: var(--faint); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 14px; height: 10px; border-radius: 3px; border: 1px solid var(--line-2); }
+  .legend i.h { border-color: rgba(239,59,54,.6); background: var(--red-soft); }
+  .legend i.d { border-style: dashed; }
+
+  /* HCMS architecture */
+  .arch { display: grid; gap: 10px; }
+  .arch .layers { border: 1px solid rgba(239,59,54,.55); border-radius: 14px; background: var(--bg); padding: 14px; box-shadow: 0 0 0 4px var(--red-soft); }
+  .arch .layers > small { display: block; font-size: 0.75rem; color: var(--faint); }
+  .arch .layers > strong { display: block; font-weight: 600; margin-bottom: 10px; }
+  .stack-rows { display: grid; gap: 6px; }
+  .stack-rows div { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 8px; background: var(--s2); font-size: 0.85rem; }
+  .stack-rows div span { color: var(--faint); }
+  .verbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .verbs { gap: 5px; }
+  .verbs b { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--muted); }
+  .verbs b.g { color: #9fe0b5; border-color: rgba(120, 220, 160, .35); }
+  .verbs b.p { color: #ffd38a; border-color: rgba(255, 200, 110, .35); }
+  .verbs b.u { color: #9cc8ff; border-color: rgba(130, 180, 255, .35); }
+  .verbs b.d { color: #ffaaa6; border-color: rgba(239, 59, 54, .45); }
+  .arch .ext { display: grid; gap: 10px; }
+  @media (min-width: 640px) {
+    .arch { grid-template-columns: 0.85fr 24px 1.7fr 24px 1fr; align-items: center; gap: 4px; }
+    .arch .ext { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 639px) { .arch .arrow svg { transform: rotate(90deg); } }
+  .arch-ext { margin-top: 18px; display: grid; gap: 10px; }
+  @media (min-width: 640px) { .arch-ext { grid-template-columns: 1fr 1fr; } }
+  .arch-ext .lead { grid-column: 1 / -1; font-size: 0.8rem; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+  .arch-ext .lead::before { content: ""; width: 18px; height: 1px; background: var(--line-2); }
+
+  /* Entries */
+  .entries { border-top: 1px solid var(--line-2); }
+  .entry { display: grid; gap: 6px 40px; padding: 30px 0 32px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 900px) { .entry { grid-template-columns: 220px minmax(0, 1fr); } }
+  .entry .when { color: var(--faint); font-size: 0.95rem; padding-top: 6px; font-variant-numeric: tabular-nums; }
+  .entry h3 { font-size: 1.45rem; font-weight: 700; font-stretch: 92%; letter-spacing: -0.015em; line-height: 1.2; }
+  .entry .org { color: var(--muted); margin-top: 2px; }
+  .entry p.d { margin-top: 12px; color: #c9ced6; max-width: 44em; }
+  .entry ul.pts { margin-top: 12px; display: grid; gap: 6px; max-width: 44em; color: #c9ced6; }
+  .entry ul.pts li { padding-left: 18px; position: relative; }
+  .entry ul.pts li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 2px; background: var(--red); }
+
+  /* Skills */
+  .skillgrid { display: grid; gap: 14px; }
+  @media (min-width: 760px) { .skillgrid { grid-template-columns: 1fr 1fr; } }
+  .sk { border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 24px; background: var(--s1); }
+  .sk h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; }
+  .sk .tags { margin-top: 0; }
+  .sk p { color: var(--muted); }
+  .certs { margin-top: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--s1); padding: 8px 22px; }
+  .certs > h3 { font-size: 1.05rem; font-weight: 600; padding: 16px 0 6px; }
+  .certs ul { display: grid; column-gap: 40px; }
+  @media (min-width: 900px) { .certs ul { grid-template-columns: 1fr 1fr; } }
+  .certs li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); }
+  .certs .n { font-weight: 500; }
+  .certs .by { display: block; color: var(--faint); font-size: 0.9rem; }
+  .certs .when { color: var(--faint); font-size: 0.9rem; white-space: nowrap; }
+
+  /* Contact */
+  .contact { margin-top: 136px; position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; padding: 56px 22px; background:
+      radial-gradient(700px 360px at 85% 120%, rgba(239,59,54,.22), transparent 70%), var(--s1); }
+  @media (min-width: 760px) { .contact { padding: 80px 64px; } }
+  .contact-h { margin-top: 10px; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.03em; line-height: 1; }
+  .contact p { color: var(--muted); font-size: 1.1rem; max-width: 34em; margin-top: 18px; }
+  .contact .mail { display: inline-block; margin-top: 18px; font-size: clamp(1.75rem, 6.4vw, 4.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.035em; line-height: 1.05; overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; text-underline-offset: 10px; }
+  .contact .mail:hover { color: #ffd9d7; }
+  .contact .cta { margin-top: 36px; }
+  footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 0 44px; color: var(--faint); font-size: 0.9rem; }
+
+  /* Motion: one load sequence + gentle reveal on scroll (JS only, honours reduced motion) */
+  @media (prefers-reduced-motion: no-preference) {
+    .js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .js .rise.in { opacity: 1; transform: none; }
+    .js .hero .rise:nth-child(2) { transition-delay: .08s; }
+    .js .hero .rise:nth-child(3) { transition-delay: .16s; }
+    .js .hero .rise:nth-child(4) { transition-delay: .24s; }
+    .js .sun.rise { transition-delay: .2s; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="top">
-    <h1>Ngoo Kah Chun</h1>
-    <p class="intro">Year 2 Diploma in Information Technology student at Ngee Ann Polytechnic, Singapore. Interested in software development and AI tools.</p>
-    <nav class="links" aria-label="Profiles">
-      <a class="btn" href="https://github.com/KCJJ0203" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub
-      </a>
-      <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.15C0 .52.52 0 1.17 0h13.66C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.17 1.15H1.17C.52 16 0 15.48 0 14.85V1.15zM4.94 13.4V6.17H2.53v7.23h2.41zM3.74 5.18c.84 0 1.36-.56 1.36-1.25-.02-.71-.52-1.25-1.35-1.25-.82 0-1.36.54-1.36 1.25 0 .69.52 1.25 1.33 1.25h.02zm2.54 8.22h2.4V9.36c0-.21.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.26c0-2.22-1.18-3.25-2.77-3.25-1.28 0-1.84.7-2.16 1.2v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.23 0 7.23z"/></svg>
-        LinkedIn
-      </a>
+<header class="bar">
+  <div class="wrap">
+    <a class="me" href="#top">Ngoo Kah Chun</a>
+    <nav aria-label="Sections">
+      <a class="opt" href="#projects">Projects</a>
+      <a class="opt" href="#experience">Experience</a>
+      <a class="opt" href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section id="projects">
-      <h2>Projects</h2>
+<div class="wrap" id="top">
+  <section class="hero" aria-label="Introduction">
+    <div>
+      <p class="status rise"><i aria-hidden="true"></i>Open to software internships</p>
+      <h1 class="statement rise"><span class="name">Ngoo Kah Chun</span> <span class="rest">builds practical software and is going deeper into security.</span></h1>
+      <p class="sub rise"><b>Year 2, Diploma in Information Technology at Ngee Ann Polytechnic.</b> I build tools for problems I actually have, from a live carpark fee map to a personal assistant that runs my study admin.</p>
+      <div class="cta rise">
+        <a class="btn primary" href="mailto:kahchunn@gmail.com">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3h13c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-13C.67 13 0 12.33 0 11.5v-7C0 3.67.67 3 1.5 3zm.3 1.6v.26L8 9.02l6.2-4.16V4.6H1.8zm12.4 2.18L8.45 10.64a.8.8 0 0 1-.9 0L1.8 6.78v4.62h12.4V6.78z"/></svg>
+          Email me</a>
+        <a class="btn" href="https://github.com/KCJJ0203" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.15C0 .52.52 0 1.17 0h13.66C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.17 1.15H1.17C.52 16 0 15.48 0 14.85V1.15zM4.94 13.4V6.17H2.53v7.23h2.41zM3.74 5.18c.84 0 1.36-.56 1.36-1.25-.02-.71-.52-1.25-1.35-1.25-.82 0-1.36.54-1.36 1.25 0 .69.52 1.25 1.33 1.25h.02zm2.54 8.22h2.4V9.36c0-.21.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.26c0-2.22-1.18-3.25-2.77-3.25-1.28 0-1.84.7-2.16 1.2v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.23 0 7.23z"/></svg>
+          LinkedIn</a>
+      </div>
+    </div>
+    <figure class="sun rise">
+      <div class="disc"><img src="assets/kc.jpg" width="600" height="840" alt="Portrait of Ngoo Kah Chun"></div>
+      <figcaption><span class="zh" lang="zh-Hans">吴家骏</span>Singapore</figcaption>
+    </figure>
+  </section>
+
+  <section class="proof rise" aria-label="Highlights">
+    <div>
+      <span class="lbl"><span class="won">Champion</span>Jun 2026</span>
+      <h3>The Sentinel Challenge 2026</h3>
+      <p>Polytechnic/ITE category of DSTA BrainHack, a cybersecurity capture-the-flag competition, in a team of four.</p>
+    </div>
+    <div>
+      <span class="lbl">Dec 2025 and Jun 2026</span>
+      <h3>Director's List, twice</h3>
+      <p>Cumulative GPA 3.92 / 4.00, School of InfoComm Technology, Ngee Ann Polytechnic.</p>
+    </div>
+    <div>
+      <span class="lbl">Jun 2025 to Sep 2026</span>
+      <h3>Sentinel Programme</h3>
+      <p>Cybersecurity talent programme by the Digital and Intelligence Service (DIS), MINDEF/SAF.</p>
+    </div>
+  </section>
+
+  <main id="main">
+    <section class="sec" id="projects" aria-labelledby="projects-h">
+      <div class="sec-head rise">
+        <div>
+          <p class="num"><b>01</b>Projects</p>
+          <h2 id="projects-h">Things I've built</h2>
+        </div>
+        <p>One live product, one private system I use every day, and one team project I led at school.</p>
+      </div>
+
       <div class="projects">
-
-        <article class="card">
-          <div class="card-head">
-            <h3>Carpark SG</h3>
-            <span class="when">Aug 2026 - Present</span>
+        <!-- Carpark SG -->
+        <article class="card rise" aria-labelledby="p1">
+          <a class="visual" href="https://kcjj0203.github.io/carpark-sg/" tabindex="-1" aria-hidden="true">
+            <img src="assets/carpark-sg.png" width="1280" height="782" loading="lazy" alt="">
+          </a>
+          <div class="body">
+            <div class="meta"><span class="pill live"><i aria-hidden="true"></i>Live</span><span class="pill">Personal project</span><span class="pill">Aug 2026 to now</span></div>
+            <h3 id="p1">Carpark SG</h3>
+            <p class="lede">A live map of 2,970 HDB, URA and LTA carparks in Singapore that tells drivers what time to park for the lowest fee, not just where.</p>
+            <div class="role">
+              <b>My role</b>
+              <ul>
+                <li>Came up with the idea, planned each feature and tested every release.</li>
+                <li>Directed an AI coding agent to build it, then checked the results myself.</li>
+                <li>Carpark data is collected every 30 minutes on a Linux server, with GitHub Actions as a backup.</li>
+              </ul>
+            </div>
+            <ul class="tags" aria-label="Built with"><li>JavaScript</li><li>Linux server</li><li>GitHub Actions</li><li>Claude Code</li></ul>
+            <div class="cta">
+              <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/">Open Carpark SG</a>
+              <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener">View the code</a>
+            </div>
+            <p class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Screenshot: a dark map of Orchard Road with a fee pin on each carpark, and a side panel showing the cost of a two-hour stay at 313@Somerset.</p>
           </div>
-          <p class="kind">Personal project, live</p>
-          <p>A live web map of 2,970 HDB, URA and LTA carparks in Singapore that tells drivers what time to park for the lowest fee, not just where to park.</p>
-          <ul>
-            <li>Came up with the idea, planned each feature, and tested every release.</li>
-            <li>Built with an AI coding agent (Claude Code), with me directing the work and checking the results.</li>
-            <li>Carpark data is collected every 30 minutes on a Linux server, with GitHub Actions as a backup.</li>
-          </ul>
-          <ul class="tags">
-            <li>JavaScript</li><li>Linux server</li><li>GitHub Actions</li><li>Claude Code</li>
-          </ul>
-          <a class="visit" href="https://kcjj0203.github.io/carpark-sg/" target="_blank" rel="noopener">Open Carpark SG &rarr;</a>
         </article>
 
-        <article class="card">
-          <div class="card-head">
-            <h3>Jarvis</h3>
-            <span class="when">Jun 2026 - Present</span>
+        <!-- Jarvis -->
+        <article class="card rise" aria-labelledby="p2">
+          <div class="visual diagram" role="img" aria-label="Diagram of how Jarvis works: the school LMS feeds scheduled jobs on a Linux server, which update the StudyTracker dashboard and send Telegram reminders. Claude Code memory and skills drive the jobs, and the dashboard keeps a synced calendar.">
+            <div class="flow" aria-hidden="true">
+              <div class="node a1"><small>Source</small><strong>School LMS</strong><span>Deadlines and submission status</span></div>
+              <div class="arrow x1"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+              <div class="node hot a2"><small>Every morning</small><strong>Scheduled jobs</strong><span>Running on a Linux server</span></div>
+              <div class="arrow x2"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+              <div class="node a3"><small>Shows</small><strong>StudyTracker</strong><span>Dashboard and synced calendar</span></div>
+              <div class="arrow up"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+              <div class="arrow dn"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+              <div class="node ghost a4"><small>Drives the jobs</small><strong>Claude Code</strong><span>Long-term memory and custom skills</span></div>
+              <div class="node a5"><small>Twice a day</small><strong>Telegram</strong><span>Reminders for anything due</span></div>
+            </div>
+            <div class="legend" aria-hidden="true"><span><i class="h"></i>Runs on its own</span><span><i class="d"></i>Assistant layer</span><span><i></i>Inputs and outputs</span></div>
           </div>
-          <p class="kind">Personal project, private</p>
-          <p>A personal AI assistant built on Claude Code, with long-term memory, custom skills and scheduled jobs. I add each automation one at a time as a real need comes up.</p>
-          <ul>
-            <li>Includes a study dashboard that pulls deadlines and submission status from the school LMS every morning.</li>
-            <li>Sends Telegram reminders twice a day so nothing due gets missed.</li>
-          </ul>
-          <ul class="tags">
-            <li>Claude Code</li><li>Node.js</li><li>GitHub Actions</li><li>Linux server</li><li>Telegram bot</li>
-          </ul>
+          <div class="body">
+            <div class="meta"><span class="pill">Private</span><span class="pill">Personal project</span><span class="pill">Jun 2026 to now</span></div>
+            <h3 id="p2">Jarvis: personal AI assistant</h3>
+            <p class="lede">An assistant with long-term memory, custom skills and scheduled jobs. Its biggest part is StudyTracker, which keeps track of everything I have due at school.</p>
+            <div class="role">
+              <b>What it does</b>
+              <ul>
+                <li>StudyTracker, the study dashboard, pulls deadlines and submission status from the school LMS every morning and keeps a calendar in sync.</li>
+                <li>Telegram reminders go out twice a day so nothing due gets missed.</li>
+                <li>I add each automation one at a time, when a real need comes up.</li>
+              </ul>
+            </div>
+            <ul class="tags" aria-label="Built with"><li>Claude Code</li><li>Node.js</li><li>GitHub Actions</li><li>Linux server</li><li>Telegram bot</li></ul>
+            <p class="note">Private, as it works with my own school accounts. Happy to walk through it in an interview.</p>
+          </div>
         </article>
 
-        <article class="card">
-          <div class="card-head">
-            <h3>Hawker Centre Management System</h3>
-            <span class="when">Apr 2026 - Aug 2026</span>
+        <!-- HCMS -->
+        <article class="card rise" aria-labelledby="p3">
+          <div class="visual diagram" role="img" aria-label="Architecture of the Hawker Centre Management System: a web client calls an Express REST API built with MVC and Joi validation, which stores menu items and cuisine tags in Microsoft SQL Server. The API also calls the data.gov.sg weather forecast and Nager.Date public holiday APIs for the stall owner prep planner.">
+            <div aria-hidden="true">
+              <div class="arch">
+                <div class="node"><small>Client</small><strong>Web app</strong><span>Used by stall owners</span></div>
+                <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+                <div class="layers">
+                  <small>My part</small>
+                  <strong>Menu Management REST API</strong>
+                  <div class="stack-rows">
+                    <div>Routes<span>Express</span></div>
+                    <div>Validation<span>Joi</span></div>
+                    <div>Controllers and models<span>MVC</span></div>
+                  </div>
+                  <div class="verbs"><b class="g">GET</b><b class="p">POST</b><b class="u">PUT</b><b class="d">DELETE</b></div>
+                </div>
+                <div class="arrow"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+                <div class="node"><small>Database</small><strong>SQL Server</strong><span>Menu items and cuisine tags, many-to-many, saved in one transaction</span></div>
+              </div>
+              <div class="arch-ext">
+                <p class="lead">Called server-side for the stall owner prep planner</p>
+                <div class="node ghost"><small>External API</small><strong>data.gov.sg</strong><span>Weather forecast</span></div>
+                <div class="node ghost"><small>External API</small><strong>Nager.Date</strong><span>Public holidays</span></div>
+              </div>
+            </div>
           </div>
-          <p class="kind">School group project, team of five</p>
-          <ul>
-            <li>Team leader: set up the GitHub branch and pull-request workflow, reviewed and merged every PR, and ran Scrum sprints in Jira.</li>
-            <li>Built the Menu Management REST API: full CRUD on menu items with many-to-many cuisine tags saved in one SQL transaction, using MVC, Joi validation and parameterised queries.</li>
-            <li>Integrated the data.gov.sg weather forecast and Nager.Date public-holiday APIs server-side for a stall owner prep planner.</li>
-          </ul>
-          <ul class="tags">
-            <li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>REST API</li><li>Jira</li><li>Scrum</li>
-          </ul>
+          <div class="body">
+            <div class="meta"><span class="pill">School group project</span><span class="pill">Team of five</span><span class="pill">Apr to Aug 2026</span></div>
+            <h3 id="p3">Hawker Centre Management System</h3>
+            <p class="lede">A management system for hawker centre stalls. I led the team of five and built the menu side of the back end.</p>
+            <div class="role">
+              <b>My role: team leader</b>
+              <ul>
+                <li>Set up the GitHub branch and pull request workflow, reviewed and merged every PR, and ran Scrum sprints in Jira.</li>
+                <li>Built the Menu Management REST API: full CRUD on menu items, with many-to-many cuisine tags saved in one SQL transaction, using MVC, Joi validation and parameterised queries.</li>
+                <li>Integrated the data.gov.sg weather forecast and Nager.Date public holiday APIs server-side for a stall owner prep planner.</li>
+              </ul>
+            </div>
+            <ul class="tags" aria-label="Built with"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>REST API</li><li>Jira</li><li>Scrum</li></ul>
+          </div>
         </article>
-
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill-row">
-          <span class="label">Programming</span>
-          <ul class="tags"><li>Python</li><li>JavaScript</li><li>C#</li><li>SQL (T-SQL)</li><li>HTML</li><li>CSS</li><li>C++ (learning)</li></ul>
+    <section class="sec" id="experience" aria-labelledby="exp-h">
+      <div class="sec-head rise">
+        <div>
+          <p class="num"><b>02</b>Experience</p>
+          <h2 id="exp-h">Work</h2>
         </div>
-        <div class="skill-row">
-          <span class="label">Tools &amp; Frameworks</span>
-          <ul class="tags"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>Git / GitHub</li><li>GitHub Actions</li><li>Linux</li><li>Postman</li><li>Jira</li><li>Visual Studio</li><li>Claude Code</li></ul>
+        <p>Part-time work alongside school, in ride operations and retail.</p>
+      </div>
+      <div class="entries">
+        <article class="entry rise">
+          <p class="when">Jun 2024 to now</p>
+          <div>
+            <h3>Crew, Rides Operations</h3>
+            <p class="org">Universal Studios Singapore, Resorts World Sentosa (part-time)</p>
+            <ul class="pts">
+              <li>Operate the ride control console, monitor the ride during operation and handle situations as they come up.</li>
+              <li>Follow emergency stop procedures and support the technical team during ride downtime and guest evacuation.</li>
+              <li>Check lap bars, harnesses and seat belts before every dispatch, and enforce ride height and safety requirements.</li>
+              <li>Manage queues and large guest groups, give directions and handle guest concerns.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="entry rise">
+          <p class="when">Mar to May 2024</p>
+          <div>
+            <h3>Sales Consultant</h3>
+            <p class="org">Skechers (temporary)</p>
+            <ul class="pts">
+              <li>Advised customers on products and sizing, working with the team to hit store sales targets.</li>
+              <li>Kept up with new releases and product trends to give accurate recommendations.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="education" aria-labelledby="edu-h">
+      <div class="sec-head rise">
+        <div>
+          <p class="num"><b>03</b>Education</p>
+          <h2 id="edu-h">Education and training</h2>
         </div>
-        <div class="skill-row">
-          <span class="label">Practices</span>
-          <ul class="tags"><li>Agile / Scrum</li><li>MVC</li><li>REST APIs</li><li>UML</li><li>Design patterns</li></ul>
+      </div>
+      <div class="entries">
+        <article class="entry rise">
+          <p class="when">Apr 2025 to Mar 2028<br>(expected)</p>
+          <div>
+            <h3>Diploma in Information Technology</h3>
+            <p class="org">Ngee Ann Polytechnic</p>
+            <p class="d"><strong>Cumulative GPA 3.92 / 4.00.</strong> Director's List, Dec 2025 and Jun 2026.</p>
+            <p class="d">Relevant modules: Back-End Development, Software Design Patterns, Software Project Management, Data Structures and Algorithms, DevOps, Full Stack Development Project.</p>
+            <p class="d">Diploma Plus: Certificate in Advanced Computing Mathematics (Advanced Statistics, Calculus, Discrete Mathematics), completing Feb 2027. CCA: Recreational Badminton Club. Industry engagement: SGTech Tech Career Launchpad, Oct 2026.</p>
+          </div>
+        </article>
+        <article class="entry rise">
+          <p class="when">Jun 2025 to Sep 2026</p>
+          <div>
+            <h3>Sentinel Programme</h3>
+            <p class="org">Digital and Intelligence Service (DIS), MINDEF/SAF</p>
+            <p class="d">Trained in Python, computer networks, network forensics, network intrusion detection and AI for security. Built a Python endpoint detection and response (EDR) tool for Windows in the final workshop.</p>
+          </div>
+        </article>
+        <article class="entry rise">
+          <p class="when">Apr 2024 to Feb 2025</p>
+          <div>
+            <h3>Polytechnic Foundation Programme</h3>
+            <p class="org">Ngee Ann Polytechnic</p>
+            <p class="d">Where I started leading group projects, which I have done in school ever since.</p>
+          </div>
+        </article>
+        <article class="entry rise">
+          <p class="when">Feb 2022 to Oct 2023</p>
+          <div>
+            <h3>GCE N(A) Level</h3>
+            <p class="org">Anderson Secondary School</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="skills" aria-labelledby="skills-h">
+      <div class="sec-head rise">
+        <div>
+          <p class="num"><b>04</b>Skills</p>
+          <h2 id="skills-h">Skills and certifications</h2>
         </div>
+      </div>
+      <div class="skillgrid">
+        <div class="sk rise"><h3>Programming</h3><ul class="tags"><li>Python</li><li>JavaScript</li><li>C#</li><li>SQL (T-SQL)</li><li>HTML</li><li>CSS</li><li>C++ (learning)</li></ul></div>
+        <div class="sk rise"><h3>Tools and frameworks</h3><ul class="tags"><li>Node.js</li><li>Express</li><li>Microsoft SQL Server</li><li>Git and GitHub</li><li>GitHub Actions</li><li>Linux</li><li>Postman</li><li>Jira</li><li>Visual Studio</li><li>Visual Paradigm</li><li>Claude Code</li></ul></div>
+        <div class="sk rise"><h3>Practices</h3><ul class="tags"><li>Agile and Scrum</li><li>MVC</li><li>REST APIs</li><li>UML</li><li>Object-oriented design patterns</li></ul></div>
+        <div class="sk rise"><h3>Languages</h3><p>Chinese, fluent, spoken and written. English, good, spoken and written. Malay, conversational spoken, basic written.</p></div>
+      </div>
+      <div class="certs rise">
+        <h3>Certifications</h3>
+        <ul>
+          <li><span><span class="n">Learning C++</span><span class="by">LinkedIn Learning</span></span><span class="when">Nov 2026</span></li>
+          <li><span><span class="n">LUMA Institute Foundation Course</span><span class="by">LUMA Institute</span></span><span class="when">Apr 2026</span></li>
+          <li><span><span class="n">PolyVenture Inter-Poly China Corporate Visit Programme</span><span class="by">Business China</span></span><span class="when">Mar 2026</span></li>
+          <li><span><span class="n">NETS QR Web Payment Gateway (Sandbox)</span><span class="by">NETS with NP School of ICT</span></span><span class="when">Jan 2026</span></li>
+          <li><span><span class="n">JavaScript: Enhancing the DOM</span><span class="by">LinkedIn Learning</span></span><span class="when">Nov 2025</span></li>
+          <li><span><span class="n">AI Ready ASEAN</span><span class="by">ASEAN Foundation, supported by Google.org</span></span><span class="when">Oct 2025</span></li>
+          <li><span><span class="n">PCEP, Certified Entry-Level Python Programmer</span><span class="by">OpenEDG Python Institute</span></span><span class="when">Aug 2025</span></li>
+          <li><span><span class="n">Cybersecurity Fundamentals</span><span class="by">IBM SkillsBuild</span></span><span class="when">Aug 2025</span></li>
+          <li><span><span class="n">Google AI Essentials</span><span class="by">Google, via Coursera</span></span><span class="when">Jul 2025</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact rise" id="contact" aria-labelledby="contact-h">
+      <p class="num"><b>05</b>Contact</p>
+      <h2 id="contact-h" class="contact-h">Get in touch</h2>
+      <p>Email is the quickest way to reach me. I'm also on LinkedIn, and my code is on GitHub.</p>
+      <a class="mail" href="mailto:kahchunn@gmail.com">kahchunn@gmail.com</a>
+      <div class="cta">
+        <a class="btn primary" href="mailto:kahchunn@gmail.com">Send me an email</a>
+        <a class="btn" href="https://www.linkedin.com/in/kah-chun-ngoo-504941121" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/KCJJ0203" rel="noopener">GitHub</a>
       </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2026 Ngoo Kah Chun
+    <span>&copy; 2026 Ngoo Kah Chun, Singapore</span>
+    <span>Last updated Nov 2026</span>
   </footer>
-
 </div>
+
+<script>
+  // Reveal elements as they scroll into view (skipped when reduced motion is on)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 </body>
 </html>
