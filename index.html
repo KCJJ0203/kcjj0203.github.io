@@ -24,6 +24,8 @@
 <meta name="twitter:image" content="https://kcjj0203.github.io/assets/og.png">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -159,6 +161,7 @@
   }
   .visual { position: relative; background: var(--s2); border-bottom: 1px solid var(--line); overflow: hidden; min-height: 300px; display: grid; }
   @media (min-width: 1000px) { .visual { border-bottom: 0; border-right: 1px solid var(--line); min-height: 440px; } }
+  .visual picture { display: contents; }
   .visual img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .6s var(--ease); }
   .body { padding: 28px 22px 30px; display: flex; flex-direction: column; }
   @media (min-width: 760px) { .body { padding: 40px; } }
@@ -381,7 +384,7 @@
         <!-- Carpark SG -->
         <article class="card rise" aria-labelledby="p1">
           <a class="visual" href="https://kcjj0203.github.io/carpark-sg/" tabindex="-1" aria-hidden="true">
-            <img src="assets/carpark-sg.png" width="1280" height="782" loading="lazy" alt="">
+            <picture><source srcset="assets/carpark-sg.webp" type="image/webp"><img src="assets/carpark-sg.png" width="1280" height="782" loading="lazy" alt=""></picture>
           </a>
           <div class="body">
             <div class="meta"><span class="pill live"><i aria-hidden="true"></i><span data-i18n="carpark.01">Live</span></span><span class="pill" data-i18n="carpark.02">Personal project</span><span class="pill" data-i18n="carpark.03">Aug 2026 to now</span></div>
@@ -398,6 +401,7 @@
             <ul class="tags" aria-label="Built with" data-i18n-label="carpark.09"><li>JavaScript</li><li data-i18n="carpark.10">Linux server</li><li>GitHub Actions</li><li>Claude Code</li></ul>
             <div class="cta">
               <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/" data-i18n="carpark.11">Open Carpark SG</a>
+              <a class="btn" href="projects/carpark-sg.html" data-i18n="carpark.14">Read the case study</a>
               <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener" data-i18n="carpark.12">View the code</a>
             </div>
             <p class="vh" data-i18n="carpark.13">Screenshot: a dark map of Orchard Road with a fee pin on each carpark, and a side panel showing the cost of a two-hour stay at 313@Somerset.</p>

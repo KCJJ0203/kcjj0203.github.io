@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Ngoo Kah Chun</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --line-2: rgba(255, 255, 255, 0.14);
+    --ink: #eef0f3;
+    --muted: #a1a8b2;
+    --faint: #6f7782;
+    --red: #ef3b36;
+    --red-glow: rgba(239, 59, 54, 0.28);
+    --cjk: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 40px 16px;
+    background: radial-gradient(600px 420px at 70% 30%, rgba(239, 59, 54, 0.13), transparent 70%), var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", var(--cjk);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  main { width: 100%; max-width: 640px; }
+  .code { color: var(--red); font-weight: 600; font-size: 0.95rem; }
+  h1 { margin: 10px 0 0; font-size: clamp(2.6rem, 8vw, 4.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.03em; line-height: 1; }
+  p { margin: 18px 0 0; color: var(--muted); font-size: 1.1rem; }
+  .zh { font-family: var(--cjk); color: var(--faint); font-size: 1rem; margin-top: 6px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 0.98rem; text-decoration: none; border: 1px solid var(--line-2); color: var(--ink); background: rgba(255,255,255,0.03); transition: border-color .2s, background .2s; }
+  .btn:hover { border-color: rgba(255,255,255,0.32); background: rgba(255,255,255,0.06); }
+  .btn.primary { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 8px 28px -10px var(--red-glow); }
+  .btn.primary:hover { background: #f5524d; border-color: #f5524d; }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="code">404</p>
+  <h1>This page does not exist.</h1>
+  <p>The link may be old, or there may be a typo in the address.</p>
+  <p class="zh" lang="zh-Hans">找不到这个页面。</p>
+  <div class="cta">
+    <a class="btn primary" href="/">Go to the home page</a>
+    <a class="btn" href="/#projects">See my projects</a>
+  </div>
+</main>
+</body>
+</html>

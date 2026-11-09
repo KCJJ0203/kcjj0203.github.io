@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carpark SG case study | Ngoo Kah Chun</title>
+<meta name="description" content="How I built Carpark SG, a live map of Singapore carparks that tells you what time to park for the lowest fee, not just where.">
+<meta name="author" content="Ngoo Kah Chun">
+<link rel="canonical" href="https://kcjj0203.github.io/projects/carpark-sg.html">
+<link rel="alternate" hreflang="en" href="https://kcjj0203.github.io/projects/carpark-sg.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://kcjj0203.github.io/projects/carpark-sg.html?lang=zh">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ngoo Kah Chun">
+<meta property="og:title" content="Carpark SG case study | Ngoo Kah Chun">
+<meta property="og:description" content="A live map of Singapore carparks that tells you what time to park for the lowest fee, not just where.">
+<meta property="og:url" content="https://kcjj0203.github.io/projects/carpark-sg.html">
+<meta property="og:image" content="https://kcjj0203.github.io/assets/carpark-sg.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d0f12">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+<style>
+  :root {
+    --bg: #0d0f12;
+    --s1: #14171b;
+    --s2: #1a1e23;
+    --s3: #222730;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-2: rgba(255, 255, 255, 0.14);
+    --ink: #eef0f3;
+    --muted: #a1a8b2;
+    --faint: #6f7782;
+    --red: #ef3b36;
+    --red-soft: rgba(239, 59, 54, 0.14);
+    --red-glow: rgba(239, 59, 54, 0.28);
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    --cjk: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", var(--cjk);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  html[lang="zh-Hans"] body { font-family: "Bricolage Grotesque", var(--cjk); line-height: 1.75; }
+  html[lang="zh-Hans"] :is(.cs-title, .cs-sec h2, .facts b) { letter-spacing: 0; }
+  html[lang="zh-Hans"] .cs-title { line-height: 1.12; }
+  body::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 900px; pointer-events: none; z-index: -1;
+    background:
+      radial-gradient(600px 420px at 78% 200px, rgba(239, 59, 54, 0.13), transparent 70%),
+      radial-gradient(900px 600px at 10% -10%, rgba(120, 140, 170, 0.08), transparent 70%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--line-2); transition: color .2s, text-decoration-color .2s; }
+  a:hover { text-decoration-color: var(--red); }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; border-radius: 6px; }
+  img { display: block; max-width: 100%; height: auto; }
+  h1, h2, h3, p, ul, figure, blockquote { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  ::selection { background: var(--red); color: #fff; }
+  code { font: 500 0.88em/1 ui-monospace, "Cascadia Mono", Consolas, monospace; padding: 2px 6px; border-radius: 6px; background: var(--s3); color: #c3c9d1; white-space: nowrap; }
+
+  .skip { position: absolute; left: 16px; top: -60px; background: var(--red); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 200; text-decoration: none; font-weight: 600; }
+  .skip:focus { top: 12px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 760px) { .wrap { padding: 0 40px; } }
+
+  /* Top bar (same as the home page) */
+  .bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); background: rgba(13, 15, 18, 0.72); }
+  .bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 64px; }
+  .bar .me { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+  .bar .right { display: flex; align-items: center; gap: 22px; }
+  .bar nav { display: flex; gap: 24px; font-size: 0.95rem; }
+  .bar nav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .bar nav a:hover { color: var(--ink); }
+  @media (max-width: 760px) { .bar nav .opt { display: none; } }
+  .lang { display: inline-flex; border: 1px solid var(--line-2); border-radius: 999px; padding: 3px; gap: 2px; }
+  .lang[hidden] { display: none; }
+  .lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 500 0.82rem/1 "Bricolage Grotesque", var(--cjk); padding: 6px 10px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
+  .lang button:hover { color: var(--ink); }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .lang button:focus-visible { outline-offset: 2px; }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 0.98rem; text-decoration: none; border: 1px solid var(--line-2); color: var(--ink); background: rgba(255,255,255,0.03); transition: border-color .2s, background .2s, transform .2s var(--ease), box-shadow .2s; }
+  .btn:hover { border-color: rgba(255,255,255,0.32); background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+  .btn.primary { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 8px 28px -10px var(--red-glow); }
+  .btn.primary:hover { background: #f5524d; border-color: #f5524d; box-shadow: 0 10px 34px -8px rgba(239,59,54,.5); }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 500; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
+  .pill.live { color: #ffd9d7; border-color: rgba(239,59,54,.45); background: var(--red-soft); }
+  .pill.live i { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+  .num { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .num b { color: var(--red); font-weight: 600; }
+  .num::after { content: ""; height: 1px; width: 56px; background: var(--line-2); }
+
+  /* Case study */
+  .cs-head { padding: 48px 0 40px; max-width: 52em; }
+  @media (min-width: 940px) { .cs-head { padding: 80px 0 56px; } }
+  .back { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 0.95rem; margin-bottom: 28px; }
+  .back:hover { color: var(--ink); }
+  .back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .kicker { margin-top: 22px; color: var(--red); font-weight: 600; font-size: 0.95rem; }
+  .cs-title { margin-top: 8px; font-size: clamp(2.8rem, 7vw, 5.6rem); font-weight: 700; font-stretch: 88%; line-height: 0.98; letter-spacing: -0.03em; }
+  .cs-lede { margin-top: 22px; font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; color: #c9ced6; max-width: 34em; }
+  html[lang="zh-Hans"] .cs-lede { line-height: 1.75; }
+
+  .shot { border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--s2); }
+  .shot img { width: 100%; height: auto; }
+  .shot figcaption { padding: 14px 20px; font-size: 0.88rem; color: var(--faint); border-top: 1px solid var(--line); background: var(--s1); }
+
+  .facts { margin-top: 28px; display: grid; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01)); overflow: hidden; }
+  @media (min-width: 760px) { .facts { grid-template-columns: repeat(3, 1fr); } }
+  .facts > div { padding: 22px 22px 24px; border-top: 1px solid var(--line); }
+  .facts > div:first-child { border-top: 0; }
+  @media (min-width: 760px) { .facts > div { border-top: 0; border-left: 1px solid var(--line); padding: 26px 28px 28px; } .facts > div:first-child { border-left: 0; } }
+  .facts b { display: block; font-size: clamp(1.9rem, 3.4vw, 2.6rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.025em; line-height: 1; }
+  .facts span { display: block; margin-top: 8px; color: var(--muted); font-size: 0.95rem; }
+
+  .cs-sec { display: grid; gap: 14px 56px; padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .cs-sec:first-of-type { margin-top: 40px; border-top: 1px solid var(--line-2); }
+  @media (min-width: 900px) { .cs-sec { grid-template-columns: 280px minmax(0, 1fr); padding: 64px 0; } }
+  .cs-sec h2 { margin-top: 10px; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 700; font-stretch: 88%; letter-spacing: -0.025em; line-height: 1.08; }
+  .cs-body { max-width: 40em; display: grid; gap: 16px; color: #c9ced6; }
+  .cs-body b { color: var(--ink); font-weight: 600; }
+  .verdict { padding: 20px 22px; border: 1px solid rgba(239,59,54,.55); border-radius: 14px; background: var(--bg); box-shadow: 0 0 0 4px var(--red-soft), 0 16px 40px -20px var(--red-glow); color: var(--ink); }
+  .verdict strong { display: block; font-size: 1.3rem; font-weight: 700; line-height: 1.25; }
+  .verdict span { display: block; margin-top: 4px; color: var(--muted); }
+  .pts { display: grid; gap: 14px; }
+  .pts li { padding-left: 20px; position: relative; }
+  .pts li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 9px; height: 2px; background: var(--red); }
+  .cs-sec .cta { margin-top: 4px; }
+
+  footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 32px 0 44px; color: var(--faint); font-size: 0.9rem; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .js .rise.in { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.01">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="me" href="../" data-i18n="nav.02">Ngoo Kah Chun</a>
+    <div class="right">
+      <nav aria-label="Sections" data-i18n-label="nav.03">
+        <a class="opt" href="../#projects" data-i18n="nav.04">Projects</a>
+        <a href="../#contact" data-i18n="nav.07">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language" data-i18n-label="nav.08" hidden>
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" lang="zh-Hans" aria-pressed="false">中文</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <main id="main">
+    <header class="cs-head">
+      <a class="back" href="../#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span data-i18n="cs.01">All projects</span></a>
+      <div class="meta"><span class="pill live"><i aria-hidden="true"></i><span data-i18n="carpark.01">Live</span></span><span class="pill" data-i18n="carpark.02">Personal project</span><span class="pill" data-i18n="carpark.03">Aug 2026 to now</span></div>
+      <p class="kicker" data-i18n="cs.02">Case study</p>
+      <h1 class="cs-title">Carpark SG</h1>
+      <p class="cs-lede" data-i18n="cs.03">A live map of about 2,970 carparks in Singapore. It tells you what time to park for the lowest fee, not just where to park.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/" data-i18n="carpark.11">Open Carpark SG</a>
+        <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener" data-i18n="carpark.12">View the code</a>
+      </div>
+    </header>
+
+    <figure class="shot rise">
+      <picture>
+        <source srcset="../assets/carpark-sg.webp" type="image/webp">
+        <img src="../assets/carpark-sg.png" width="1280" height="782" alt="Screenshot: a dark map of Orchard Road with a fee pin on each carpark, and a side panel showing the cost of a two-hour stay at 313@Somerset." data-i18n-alt="carpark.13">
+      </picture>
+      <figcaption data-i18n="cs.04">Every pin carries the fee for your stay. The side panel shows what one carpark costs.</figcaption>
+    </figure>
+
+    <div class="facts rise">
+      <div><b>2,970</b><span data-i18n="cs.05">carparks from HDB, URA and LTA</span></div>
+      <div><b data-i18n="cs.06">30 min</b><span data-i18n="cs.07">between availability snapshots</span></div>
+      <div><b>24</b><span data-i18n="cs.08">hours priced for every stay</span></div>
+    </div>
+
+    <section class="cs-sec rise" aria-labelledby="s1">
+      <div><p class="num"><b>01</b></p><h2 id="s1" data-i18n="cs.10">The problem</h2></div>
+      <div class="cs-body">
+        <p data-i18n="cs.11">Singapore already has good parking apps, like wheretopark.sg. They answer one question well: which carpark near me has a space?</p>
+        <p data-i18n="cs.12">None of them answer a different question: what hour should I come? Rates here change at 8.30am, 5pm and 10.30pm, and again on Sundays and public holidays. Two hours on the same Orchard street costs $4.80 at lunchtime and nothing after 5pm. A list sorted by distance or price only shows one moment, so that saving never shows up.</p>
+      </div>
+    </section>
+
+    <section class="cs-sec rise" aria-labelledby="s2">
+      <div><p class="num"><b>02</b></p><h2 id="s2" data-i18n="cs.20">The idea: when, not where</h2></div>
+      <div class="cs-body">
+        <p data-i18n="cs.21">So the front page gives a verdict about time first, and the carparks come second. Search a place, say how long you are staying, and it tells you something like this:</p>
+        <blockquote class="verdict"><strong data-i18n="cs.22">Arrive after 5.00pm and pay free.</strong><span data-i18n="cs.23">It is $2.40 arriving 1.00pm.</span></blockquote>
+        <p data-i18n="cs.24">Under it is a strip of 24 bars, one for each hour, showing the cheapest parking near the centre of the map if you arrive then. Tap an hour and the verdict, the list and every price pin re-price for that time. Past hours are dimmed, so it never suggests a time that is already gone.</p>
+      </div>
+    </section>
+
+    <section class="cs-sec rise" aria-labelledby="s3">
+      <div><p class="num"><b>03</b></p><h2 id="s3" data-i18n="cs.30">How it works</h2></div>
+      <div class="cs-body">
+        <ul class="pts">
+          <li data-i18n="cs.31"><b>Three open data sources.</b> Every HDB carpark, every URA carpark and street bay, and 40 malls from LTA.</li>
+          <li data-i18n="cs.32"><b>One adapter per source.</b> Adding a source is one adapter file plus one line in a list. Every id carries its source, like <code>hdb:ACB</code>, <code>ura:A0007</code> or <code>lta:23</code>, so feeds never clash.</li>
+          <li data-i18n="cs.33"><b>Prices from the source.</b> URA ships rates with each carpark. HDB only lists its rates on a web page, so they are typed in with the date they were read, and a weekly check flags any change. LTA publishes no prices, so malls show free lots only.</li>
+          <li data-i18n="cs.34"><b>A scheduled collector.</b> It saves a snapshot of live availability every 30 minutes. GitHub Actions rebuilds and publishes the site data once a day. The page itself is static, with no accounts and no tracking.</li>
+          <li data-i18n="cs.35"><b>Predictions from history.</b> Where HDB charges the same rate all day, the strip shows how full nearby carparks usually are at each hour instead, using the history of close to 2,000 HDB carparks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-sec rise" aria-labelledby="s4">
+      <div><p class="num"><b>04</b></p><h2 id="s4" data-i18n="cs.40">What was hard</h2></div>
+      <div class="cs-body">
+        <ul class="pts">
+          <li data-i18n="cs.41"><b>Coordinates.</b> The government data uses SVY21, Singapore's own map grid. Read as latitude and longitude, every carpark lands off the coast of West Africa. The converter is checked against OneMap and agrees to within 8 centimetres.</li>
+          <li data-i18n="cs.42"><b>A wrong number is worse than no number.</b> A carpark reporting 0 lots shows as not reporting, not as full. A big carpark with every lot free usually has dead sensors, so it is flagged and gets no predictions. Where URA publishes no rate, the app says so instead of guessing free.</li>
+          <li data-i18n="cs.43"><b>Gaps in the data.</b> The first collector ran on my desktop and got 6 or 7 snapshots a day instead of 48, because the PC went to sleep. Later, GitHub's scheduler quietly fell to 3 a day while every run still passed. Now more than one scheduler feeds the history, and a script reports the gaps for each day.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-sec rise" aria-labelledby="s5">
+      <div><p class="num"><b>05</b></p><h2 id="s5" data-i18n="cs.50">What I learned</h2></div>
+      <div class="cs-body">
+        <ul class="pts">
+          <li data-i18n="cs.51"><b>Test the data before the idea.</b> My earlier project compared supermarket prices. It died because the shops blocked collection or had no online catalogue, and I only found out after the matching engine was built. This time I checked first: 2,007 of 2,015 live carparks matched their location records before any app code was written.</li>
+          <li data-i18n="cs.52"><b>Check what you collected, not just that it ran.</b> A job can finish without errors every time and still leave half the day empty.</li>
+          <li data-i18n="cs.53"><b>Answer a different question.</b> wheretopark.sg already wins at finding a carpark near you, so I competed on timing and price instead.</li>
+          <li data-i18n="cs.54"><b>Directing an AI coding agent is real work.</b> I planned each feature, directed the agent and tested every release myself. My rule now: use the app like a real driver before trusting any description of what it does.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-sec rise" aria-labelledby="s6">
+      <div><p class="num"><b>06</b></p><h2 id="s6" data-i18n="cs.60">Try it</h2></div>
+      <div class="cs-body">
+        <p data-i18n="cs.61">It works on a phone or a desktop, with nothing to install.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://kcjj0203.github.io/carpark-sg/" data-i18n="carpark.11">Open Carpark SG</a>
+          <a class="btn" href="https://github.com/KCJJ0203/carpark-sg" rel="noopener" data-i18n="carpark.12">View the code</a>
+          <a class="btn" href="../#projects" data-i18n="cs.62">Back to all projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-i18n="footer.01">&copy; 2026 Ngoo Kah Chun, Singapore</span>
+    <span data-i18n="footer.02">Last updated Nov 2026</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    // Same language switch as the home page. Strings live in ../i18n/<lang>.json.
+    var BASE = '../i18n/';
+    var TITLE_KEY = 'cs.title';
+    var root = document.documentElement;
+    var texts = document.querySelectorAll('[data-i18n]');
+    var labels = document.querySelectorAll('[data-i18n-label]');
+    var alts = document.querySelectorAll('[data-i18n-alt]');
+    var switcher = document.querySelector('.lang');
+    var buttons = switcher.querySelectorAll('button');
+    var en = {};
+    texts.forEach(function (el) { en[el.getAttribute('data-i18n')] = el.innerHTML; });
+    labels.forEach(function (el) { en[el.getAttribute('data-i18n-label')] = el.getAttribute('aria-label') || ''; });
+    alts.forEach(function (el) { en[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt') || ''; });
+    en[TITLE_KEY] = document.title;
+    var dict = { en: en, zh: null };
+
+    function apply(lang, save) {
+      var t = dict[lang] || en;
+      function get(k) { return Object.prototype.hasOwnProperty.call(t, k) ? t[k] : en[k]; }
+      root.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+      texts.forEach(function (el) { el.innerHTML = get(el.getAttribute('data-i18n')); });
+      labels.forEach(function (el) { el.setAttribute('aria-label', get(el.getAttribute('data-i18n-label'))); });
+      alts.forEach(function (el) { el.setAttribute('alt', get(el.getAttribute('data-i18n-alt'))); });
+      document.title = get(TITLE_KEY);
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
+      if (save) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+
+    function load(name) { return fetch(BASE + name + '.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+    if (window.fetch) {
+      Promise.all([load('en'), load('zh')]).then(function (res) {
+        var src = res[0], zh = res[1];
+        var differs = Object.keys(src).some(function (k) { return zh[k] && zh[k] !== src[k]; });
+        if (!differs) return;
+        dict.zh = zh;
+        switcher.hidden = false;
+        buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang'), true); }); });
+        var pick = 'en';
+        try {
+          var q = new URLSearchParams(location.search).get('lang');
+          if (q === 'zh' || q === 'en') pick = q;
+          else { var saved = localStorage.getItem('lang'); if (saved === 'zh' || saved === 'en') pick = saved; }
+        } catch (e) {}
+        if (pick === 'zh') apply('zh', false);
+      }).catch(function () {});
+    }
+
+    var els = document.querySelectorAll('.rise');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</body>
+</html>
